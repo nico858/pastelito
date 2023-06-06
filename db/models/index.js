@@ -19,20 +19,20 @@ export const Recharge = RechargeModel(connection, Sequelize);
 export const User = UserModel(connection, Sequelize);
 
 
-// User.hasMany(Address, { as: 'addresses' });
-// Address.belongsTo(User, { as: 'users' });
+User.hasMany(Address, { as: 'addresses', foreignKey: 'addressId' });
+Address.belongsTo(User, { as: 'users' });
 
-// User.hasMany(OrderDate, { as: 'orderDates' });
-// OrderDate.belongsTo(User, { as: 'users' });
+User.hasMany(OrderDate, { as: 'orderDates' });
+OrderDate.belongsTo(User, { as: 'users' });
 
-// User.hasMany(Recharge, { as: 'recharges' });
-// Recharge.belongsTo(User, { as: 'users' });
+User.hasMany(Recharge, { as: 'recharges', foreignKey: 'rechargeId' });
+Recharge.belongsTo(User, { as: 'users' });
 
 // User.hasMany(OrderDetail, { as: 'orderDetails' });
 // OrderDetail.belongsTo(User, { as: 'users' });
 
-Category.hasMany(Product, { as: "products", foreignKey: "categoryId" });
-Product.belongsTo(Category, { as: "categories" });
+Category.hasMany(Product, { as: 'products', foreignKey: 'categoryId' });
+Product.belongsTo(Category, { as: 'categories' });
 
 // OrderDate.hasMany(OrderDetail, { as: 'orderDetails' });
 // OrderDetail.belongsTo(OrderDate, { as: 'orderDates' });
