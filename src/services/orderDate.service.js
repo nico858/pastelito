@@ -1,22 +1,22 @@
 import boom from '@hapi/boom';
 
-import models from './../../db/database.js';
+import { OrderDate } from '../../db/models/index.js';
 
 export default class OrderDateService {
   constructor() {}
 
   async create(data) {
-    const newOrderDate = await models.OrderDate.create(data);
+    const newOrderDate = await OrderDate.create(data);
     return newOrderDate;
   }
 
   async find() {
-    const response = await models.OrderDate.findAll();
+    const response = await OrderDate.findAll();
     return response;
   }
 
   async findByUser(userId) {
-    const orders = await models.OrderDate.findByPk(id , {
+    const orders = await OrderDate.findByPk(id , {
       where: {
         'customer.user.id$': userId
       },
@@ -31,7 +31,7 @@ export default class OrderDateService {
   }
 
   async findOne(id) {
-    const orderDate = await models.OrderDate.findByPk(id);
+    const orderDate = await OrderDate.findByPk(id);
     if (!orderDate) {
       throw boom.notFound('OrderDate not found');
     }

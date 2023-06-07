@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-const productId = Joi.number().integer();
+const id = Joi.number().integer();
 const name = Joi.string().max(100);
 const description = Joi.string().max(500);
 const price = Joi.number().integer();
@@ -27,5 +27,5 @@ export const updateProductSchema = Joi.object({
 });
 
 export const getProductSchema = Joi.object({
-  productId: productId.required(),
+  id: id.required(),
 });

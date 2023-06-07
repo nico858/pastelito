@@ -1,6 +1,6 @@
 export const ProductModel = (connection, DataTypes) => {
   return connection.define('Product', {
-    productId: {
+    id: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
@@ -28,7 +28,7 @@ export const ProductModel = (connection, DataTypes) => {
     },
     categoryId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       field: 'category_id',
       onUpdate: 'CASCADE',
       onDelete: 'SET NULL'

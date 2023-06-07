@@ -1,22 +1,25 @@
 import boom from '@hapi/boom';
 
-import models from './../../db/database.js';
+import { Recharge, User } from '../../db/models/index.js';
 
 export default class RechargeService {
   constructor() {}
 
-  async create(data) {
-    const newRecharge = await models.Recharge.create(data);
+  async create(data, id) {
+    const newRecharge = await Recharge.create(data);
+    const user = await User.findOne(id);
+    const newBalance = user.siuuPoints + data.cash;
+    await user.update({ siuuPoints: newBalance });
     return newRecharge;
   }
 
   async find() {
-    const response = await models.Recharge.findAll();
+    const response = await Recharge.findAll();
     return response;
   }
 
   async findOne(id) {
-    const recharge = await models.Recharge.findByPk(id);
+    const recharge = await Recharge.findByPk(id);
     if (!recharge) {
       throw boom.notFound('Recharge not found');
     }

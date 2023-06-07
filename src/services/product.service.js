@@ -1,22 +1,22 @@
 import boom from '@hapi/boom';
 
-import models from './../../db/database.js';
+import { Product } from '../../db/models/index.js';
 
 export default class ProductsService {
 
   async create(data) {
-    const newProduct = await models.Product.create(data);
+    const newProduct = await Product.create(data);
     return newProduct;
   }
 
   async find() {
-    const products = await models.Product.findAll();
+    const products = await Product.findAll();
     return products;
   }
 
   async findOne(id) {
     //const product = this.products.find(item => item.productId === id); //para buscar si se usa fakerz||
-    const product = await models.Product.findByPk(id);
+    const product = await Product.findByPk(id);
     if (!product) {
       throw boom.notFound('product not found');
     }

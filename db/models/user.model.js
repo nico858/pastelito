@@ -34,7 +34,7 @@ export const UserModel = (connection, DataTypes) => {
       unique: true,
     },
     addressId: {
-      allowNull: false,
+      allowNull: true,
       type: DataTypes.INTEGER,
       field: 'address_id',
       onUpdate: 'CASCADE',

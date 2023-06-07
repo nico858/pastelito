@@ -11,7 +11,6 @@ const router = express.Router();
 const service = new ProductsService();
 
 router.get('/', async (req, res, next) => {
-  res.json({ message: 'products' })
   try {
     const products = await service.find();
     res.json(products);
@@ -20,12 +19,12 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.get('/:productId',
+router.get('/:id',
   validatorHandler(getProductSchema, 'params'),
   async (req, res, next) => {
     try {
-      const { productId } = req.params;
-      const product = await service.findOne(productId);
+      const { id } = req.params;
+      const product = await service.findOne(id);
       res.json(product);
     } catch (error) {
       next(error);
@@ -34,8 +33,8 @@ router.get('/:productId',
 );
 
 router.post('/',
-  passport.authenticate('jwt', {session: false}),
-  checkRoles(['admin']),
+  // passport.authenticate('jwt', {session: false}),
+  // checkRoles(['admin']),
   validatorHandler(createProductSchema, 'body'),
   async (req, res, next) => {
     try {
@@ -48,14 +47,14 @@ router.post('/',
   }
 );
 
-router.patch('/:productId',
+router.patch('/:id',
   validatorHandler(getProductSchema, 'params'),
   validatorHandler(updateProductSchema, 'body'),
   async (req, res, next) => {
     try {
-      const { productId } = req.params;
+      const { id } = req.params;
       const body = req.body;
-      const product = await service.update(productId, body);
+      const product = await service.update(id, body);
       res.json(product);
     } catch (error) {
       next(error);
@@ -63,7 +62,7 @@ router.patch('/:productId',
   }
 );
 
-router.delete('/:productId',
+router.delete('/:id',
   validatorHandler(getProductSchema, 'params'),
   async (req, res, next) => {
     try {

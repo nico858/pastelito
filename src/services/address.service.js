@@ -1,12 +1,12 @@
 import boom from '@hapi/boom';
 
-import models from './../../db/database.js';
+import { Address } from '../../db/models/index.js';
 
 export default class AddressService {
   constructor() {}
 
   async create(data) {
-    const newAddress = await models.Adress.create(data);
+    const newAddress = await Address.create(data);
     return newAddress;
   }
 
