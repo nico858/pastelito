@@ -1,4 +1,5 @@
 import express from 'express';
+import passport from 'passport';
 
 import AddressService from '../services/address.service.js';
 import validatorHandler from '../middlewares/validator.handler.js';
@@ -9,7 +10,9 @@ const service = new AddressService();
 
 
 
-router.get('/', async (req, res, next) => {
+router.get('/', 
+  passport.authenticate('jwt', { session: false }),
+  async (req, res, next) => {
   try {
     const addresses = await service.find();
     res.json(addresses);
@@ -19,6 +22,7 @@ router.get('/', async (req, res, next) => {
 });
 
 router.get('/:addressId',
+  passport.authenticate('jwt', { session: false }),
   validatorHandler(getAddressSchema, 'params'),
   async (req, res, next) => {
     try {
@@ -32,6 +36,7 @@ router.get('/:addressId',
 );
 
 router.post('/',
+  passport.authenticate('jwt', { session: false }),
   validatorHandler(createAddressSchema, 'body'),
   async (req, res, next) => {
     try {
@@ -45,6 +50,7 @@ router.post('/',
 );
 
 router.patch('/:addressId',
+  passport.authenticate('jwt', { session: false }),
   validatorHandler(getAddressSchema, 'params'),
   validatorHandler(updateAddressSchema, 'body'),
   async (req, res, next) => {
@@ -60,6 +66,7 @@ router.patch('/:addressId',
 );
 
 router.delete('/:addressId',
+  passport.authenticate('jwt', { session: false }),
   validatorHandler(getAddressSchema, 'params'),
   async (req, res, next) => {
     try {

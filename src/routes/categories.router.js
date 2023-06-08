@@ -9,7 +9,9 @@ import { checkRoles } from '../middlewares/auth.handler.js';
 const router = express.Router();
 const service = new CategoryService();
 
-router.get('/', async (req, res, next) => {
+router.get('/',
+  passport.authenticate('jwt', { session: false }),
+  async (req, res, next) => {
   try {
     const categories = await service.find();
     res.json(categories);
@@ -19,7 +21,9 @@ router.get('/', async (req, res, next) => {
 });
 
 router.get('/:id',
-  validatorHanlder(getCategorySchema, 'params'), async (req, res, next) => {
+  passport.authenticate('jwt', { session: false }),
+  validatorHanlder(getCategorySchema, 'params'), 
+  async (req, res, next) => {
     try {
       const { id } = req.params;
       const category = await service.findOne(id);
@@ -44,6 +48,8 @@ router.post('/',
 });
 
 router.patch('/:id',
+  passport.authenticate('jwt', { session: false }),
+  checkRoles('Admin'),
   validatorHanlder(getCategorySchema, 'params'),
   validatorHanlder(updateCategorySchema, 'body'),
   async (req, res, next) => {
@@ -58,6 +64,8 @@ router.patch('/:id',
 });
 
 router.delete('/:id',
+  passport.authenticate('jwt', { session: false }),
+  checkRoles('Admin'),
   validatorHanlder(getCategorySchema, 'params'),
   async (req, res, next) => {
     try {

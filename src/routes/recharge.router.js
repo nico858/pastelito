@@ -1,4 +1,5 @@
 import express from 'express';
+import passport from 'passport';
 
 import RechargeService from '../services/recharge.service.js';
 import validatorHandler from '../middlewares/validator.handler.js';
@@ -7,7 +8,9 @@ import { createRechargeSchema, updateRechargeSchema, getRechargeSchema } from '.
 const router = express.Router();
 const service = new RechargeService();
 
-router.get('/', async (req, res, next) => {
+router.get('/',
+  passport.authenticate('jwt', {session: false}),
+  async (req, res, next) => {
   try {
     const recharges = await service.find();
     res.json(recharges);
@@ -17,6 +20,7 @@ router.get('/', async (req, res, next) => {
 });
 
 router.get('/:rechargeId',
+  passport.authenticate('jwt', {session: false}),
   validatorHandler(getRechargeSchema, 'params'),
   async (req, res, next) => {
     try {
@@ -30,6 +34,7 @@ router.get('/:rechargeId',
 );
 
 router.post('/',
+  passport.authenticate('jwt', {session: false}),
   validatorHandler(createRechargeSchema, 'body'),
   async (req, res, next) => {
     try {
@@ -43,6 +48,7 @@ router.post('/',
 );
 
 router.patch('/:rechargeId',
+  passport.authenticate('jwt', {session: false}),
   validatorHandler(getRechargeSchema, 'params'),
   validatorHandler(updateRechargeSchema, 'body'),
   async (req, res, next) => {
@@ -58,6 +64,7 @@ router.patch('/:rechargeId',
 );
 
 router.delete('/:rechargeId',
+  passport.authenticate('jwt', {session: false}),
   validatorHandler(getRechargeSchema, 'params'),
   async (req, res, next) => {
     try {

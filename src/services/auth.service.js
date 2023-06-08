@@ -5,12 +5,14 @@ import nodemailer from 'nodemailer';
 
 import { config } from '../config/config.js';
 import UserService from './user.service.js';
+
 const service = new UserService();
 
 export default class AuthService {
 
   async getUser(email, password) {
     const user = await service.findByEmail(email);
+    console.log(user)
     if (!user) {
       throw boom.unauthorized();
     }
@@ -19,6 +21,7 @@ export default class AuthService {
       throw boom.unauthorized(), false;
     }
     delete user.dataValues.userPassword;
+    delete user.dataValues.recoveryToken;
     return user;
   }
 
@@ -39,15 +42,15 @@ export default class AuthService {
     if (!user) {
       throw boom.unauthorized();
     }
-    const payload = { sub: user.clientId };
+    const payload = { sub: user.id };
     const token = jwt.sign(payload, config.jwtSecret, {expiresIn: '15min'});
     const link = `http://alphafront.com/recovery?token=${token}`;
-    await service.update(user.clientId, {recoveryToken: token});
+    await service.update(user.id, {recoveryToken: token});
     const mail = {
       from: config.smtpEmail,
       to: `${user.email}`,
       subject: "Recovery password email",
-      html: `<b>Click in this link to recover your password ${link}</b>`,
+      html: `<b>Hi ${user.firstName} ${user.lastName} <br> Click in this link to recover your password ${link}</b>`,
     }
     const response = await this.sendMail(mail);
     return response;
@@ -61,7 +64,7 @@ export default class AuthService {
         throw boom.unauthorized();
       }
       const hash = await bcrypt.hash(newPassword, 10);
-      await service.update(user.clientId, {recoveryToken: null, userPassword: hash});
+      await service.update(user.id, {recoveryToken: null, userPassword: hash});
       return { message: 'password changed '};
     } catch(error) {
       throw boom.unauthorized();
