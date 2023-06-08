@@ -12,9 +12,9 @@ export function checkApiKey(req, res, next) {
 }
 
 export function checkRoles(...roles) {
-  return(req, rest, next) => {
+  return(req, res, next) => {
     const user = req.user;
-    if(user.role === 'admin') {
+    if(roles.includes(user.role)) {
       next();
     } else {
       next(boom.forbidden('You need permissions to do that'));

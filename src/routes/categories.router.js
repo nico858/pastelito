@@ -3,6 +3,8 @@ import express from 'express';
 import CategoryService from './../services/category.service.js';
 import validatorHanlder from './../middlewares/validator.handler.js';
 import { getCategorySchema, createCategorySchema, updateCategorySchema } from './../schemas/category.schema.js';
+import passport from 'passport';
+import { checkRoles } from '../middlewares/auth.handler.js';
 
 const router = express.Router();
 const service = new CategoryService();
@@ -28,6 +30,8 @@ router.get('/:id',
 });
 
 router.post('/',
+  passport.authenticate('jwt', { session: false }),
+  checkRoles('Admin'),
   validatorHanlder(createCategorySchema, 'body'),
   async (req, res, next) => {
     try {

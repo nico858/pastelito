@@ -18,12 +18,7 @@ export default class OrderDetailService {
       throw boom.badRequest('You do not have enough siuu points');
     }
 
-
     const orderDate = await OrderDate.create({ clientId: data.clientId });
-
-
-
-    console.log(data)
     const newOrderDetail = await OrderDetail.create({
       orderDateId: orderDate.id,
       productId,

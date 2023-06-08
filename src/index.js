@@ -14,10 +14,10 @@ app.use(express.json());
 import passport from 'passport';
 
 import { LocalStrategy } from './utils/aut/strategies/local.strategy.js';
-// import { jwtStrategy } from './utils/aut/strategies/jwt.strategy.js';
+import { jwtStrategy } from './utils/aut/strategies/jwt.strategy.js';
 
 passport.use(LocalStrategy);
-// passport.use(jwtStrategy);
+passport.use(jwtStrategy);
 
 app.get('/', checkApiKey, (req, res) => {
     res.send('Hello World!');

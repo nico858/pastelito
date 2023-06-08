@@ -24,7 +24,7 @@ export default class AuthService {
 
   signToken(user) {
     const payload = {
-      sub: user.clientId,
+      sub: user.id,
       role: user.role
     }
     const token = jwt.sign(payload, config.jwtSecret);
