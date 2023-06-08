@@ -12,7 +12,6 @@ export default class AuthService {
 
   async getUser(email, password) {
     const user = await service.findByEmail(email);
-    console.log(user)
     if (!user) {
       throw boom.unauthorized();
     }

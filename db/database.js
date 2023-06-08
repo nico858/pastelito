@@ -1,11 +1,13 @@
 import { Sequelize  } from 'sequelize';
 
+import { config } from '.././src/config/config.js';
+
 const connection = new Sequelize(
-    'store',
-    'postgres',
-    'admin123',
+    config.dbName,
+    config.dbUser,
+    config.dbPassword,
     {
-        host: 'localhost',
+        host: config.dbHost,
         dialect: 'postgres',
         logging: false,
     }
