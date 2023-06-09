@@ -1,3 +1,141 @@
+/**
+ * @swagger
+ * components:
+ *  schemas:
+ *   Product:
+ *    type: object
+ *    required:
+ *      - name
+ *      - description
+ *      - price
+ *      - stock
+ *      - urlImage
+ *      - categoryId
+ *    properties:
+ *      id:
+ *        type: integer
+ *        description: The auto-generated id of the product.
+ *      name:
+ *        type: string
+ *        description: The name of the product.
+ *      description:
+ *        type: string
+ *        description: The description of the product.
+ *      price:
+ *        type: integer
+ *        description: The price of the product.
+ *      stock:
+ *        type: integer
+ *        description: Amount of product in stock.
+ *      urlImage:
+ *        type: strig
+ *        description: Url of the image that shows the product.
+ *      categoryId:
+ *        type: integer
+ *        description: Id of the category the product belongs to.
+*/
+/**
+ * @swagger
+ * tags:
+ *   name: Product
+ *   description: The product managing API
+ * /products:
+ *   get:
+ *     summary: Lists all the products
+ *     tags: [Product]
+ *     responses:
+ *       200:
+ *         description: The list of the products
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Product'
+ *   post:
+ *     summary: Create a new product
+ *     tags: [Product]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Product'
+ *     responses:
+ *       200:
+ *         description: The created product.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Product'
+ *       500:
+ *         description: Server error
+ * /products/{id}:
+ *   get:
+ *     summary: Get the product by id
+ *     tags: [Product]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The product id
+ *     responses:
+ *       200:
+ *         description: The product response by id
+ *         contens:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Product'
+ *       404:
+ *         description: The product was not found
+ *   patch:
+ *    summary: Update the product by the id
+ *    tags: [Product]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: The product id
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref: '#/components/schemas/Product'
+ *    responses:
+ *      200:
+ *        description: The product was updated
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/Product'
+ *      404:
+ *        description: The product was not found
+ *      500:
+ *        description: Server error
+ *   delete:
+ *     summary: Remove the product by id
+ *     tags: [Product]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The product id
+ *
+ *     responses:
+ *       200:
+ *         description: The product was deleted
+ *       404:
+ *         description: The product was not found
+ */
+
+
 import express from "express";
 import passport from "passport";
 

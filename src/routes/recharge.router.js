@@ -1,3 +1,128 @@
+/**
+ * @swagger
+ * components:
+ *  schemas:
+ *   Recharge:
+ *    type: object
+ *    required:
+ *      - clientId
+ *      - cash
+ *    properties:
+ *      id:
+ *        type: integer
+ *        description: The auto-generated id of the recharge.
+ *      clientId:
+ *        type: integer
+ *        description: The id of the client that will receive the recharge.
+ *      cash:
+ *        type: integer
+ *        description: Amount of siuu points that will be recharge.
+ *      dateRecharge:
+ *        type: date
+ *        description: Date of the recharge.
+*/
+/**
+ * @swagger
+ * tags:
+ *   name: Recharge
+ *   description: The recharge managing API
+ * /recharge:
+ *   get:
+ *     summary: Lists all the recharges
+ *     tags: [Recharge]
+ *     responses:
+ *       200:
+ *         description: The list of the recharges
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Recharge'
+ *   post:
+ *     summary: Create a new recharge
+ *     tags: [Recharge]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Recharge'
+ *     responses:
+ *       200:
+ *         description: The created recharge.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Recharge'
+ *       500:
+ *         description: Server error
+ * /recharge/{id}:
+ *   get:
+ *     summary: Get the recharge by id
+ *     tags: [Recharge]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The recharge id
+ *     responses:
+ *       200:
+ *         description: The recharge response by id
+ *         contens:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Recharge'
+ *       404:
+ *         description: The recharge was not found
+ *   patch:
+ *    summary: Update the recharge by the id
+ *    tags: [Recharge]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: The recharge id
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref: '#/components/schemas/Recharge'
+ *    responses:
+ *      200:
+ *        description: The recharge was updated
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/Recharge'
+ *      404:
+ *        description: The recharge was not found
+ *      500:
+ *        description: Server error
+ *   delete:
+ *     summary: Remove the recharge by id
+ *     tags: [Recharge]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The recharge id
+ *
+ *     responses:
+ *       200:
+ *         description: The recharge was deleted
+ *       404:
+ *         description: The recharge was not found
+ */
+
+
 import express from 'express';
 import passport from 'passport';
 

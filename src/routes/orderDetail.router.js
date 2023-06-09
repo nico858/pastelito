@@ -1,3 +1,133 @@
+/**
+ * @swagger
+ * components:
+ *  schemas:
+ *   OrderDetail:
+ *    type: object
+ *    required:
+ *      - orderDateId
+ *      - productId
+ *      - quantity
+ *      - price
+ *    properties:
+ *      id:
+ *        type: integer
+ *        description: The auto-generated id of the orderDetail
+ *      orderDateId:
+ *        type: string
+ *        description: The id of the orderDate
+ *      productId:
+ *        type: string
+ *        description: The id of the product
+ *      quantity:
+ *        type: integer
+ *        description: Amount of product
+ *      price:
+ *        type: integer
+ *        description: The price of the order. Obtained from quantity * product price.
+*/
+/**
+ * @swagger
+ * tags:
+ *   name: OrderDetail
+ *   description: The order managing API
+ * /orderDetail:
+ *   get:
+ *     summary: Lists all the order
+ *     tags: [OrderDetail]
+ *     responses:
+ *       200:
+ *         description: The list of the orders
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/OrderDetail'
+ *   post:
+ *     summary: Create a new order
+ *     tags: [OrderDetail]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/OrderDetail'
+ *     responses:
+ *       200:
+ *         description: The created order.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/OrderDetail'
+ *       500:
+ *         description: Server error
+ * /orderDetail/{id}:
+ *   get:
+ *     summary: Get the order by id
+ *     tags: [OrderDetail]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The order id
+ *     responses:
+ *       200:
+ *         description: The order response by id
+ *         contens:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/OrderDetail'
+ *       404:
+ *         description: The order was not found
+ *   patch:
+ *    summary: Update the order by the id
+ *    tags: [OrderDetail]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: The order id
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref: '#/components/schemas/OrderDetail'
+ *    responses:
+ *      200:
+ *        description: The order was updated
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/OrderDetail'
+ *      404:
+ *        description: The order was not found
+ *      500:
+ *        description: Server error
+ *   delete:
+ *     summary: Remove the order by id
+ *     tags: [OrderDetail]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The order id
+ *
+ *     responses:
+ *       200:
+ *         description: The order was deleted
+ *       404:
+ *         description: The order was not found
+ */
+
+
 import express from 'express';
 
 import OrderDatailService from './../services/orderDetail.service.js';
