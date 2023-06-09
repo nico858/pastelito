@@ -24,7 +24,7 @@ This is an e-commerce project built using Node.js, Express, PostgreSQL, Docker, 
 
 To get started with the project, follow these steps:
 
-1. Clone the repository: `git clone `
+1. Clone the repository: `git clone https://github.com/nico858/my-store.git`
 2. Install dependencies: `npm install`
 3. Set up the PostgreSQL database and configure the connection details. You can use docker-compose and env.example files
 4. Start the server: `npm start`
