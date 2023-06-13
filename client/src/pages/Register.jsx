@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-import { registerRequest } from "../api/auth"
+import { registerRequest } from "../api/auth";
 
 export default function Register() {
   const { register, handleSubmit } = useForm();
@@ -25,18 +25,15 @@ export default function Register() {
           </Link>
         </p>
         <form
-          onSubmit={handleSubmit(async(values) => {
+          onSubmit={handleSubmit(async (values) => {
             console.log(values);
-            const res = await registerRequest(values)
+            const res = await registerRequest(values);
             console.log(res);
           })}
         >
           <div className="user-box">
             <label className="font">Nombre</label>
-            <input
-              type="text"
-              {...register("clientName")}
-              required />
+            <input type="text" {...register("clientName")} required />
           </div>
           <div className="user-box">
             <label>Apellido</label>
@@ -52,7 +49,8 @@ export default function Register() {
               <input
                 type={showPassword ? "text" : "password"}
                 {...register("password")}
-                required />
+                required
+              />
               <FontAwesomeIcon
                 className="password-icon"
                 icon={showPassword ? faEyeSlash : faEye}
@@ -60,7 +58,9 @@ export default function Register() {
               />
             </div>
           </div>
-          <button type="submit">Registrarse</button>
+          <div className="centerButton">
+            <button type="submit">Registrarse</button>
+          </div>
         </form>
       </div>
     </div>
