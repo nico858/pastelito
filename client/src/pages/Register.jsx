@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import { registerRequest } from "../api/auth"
 
 export default function Register() {
   const { register, handleSubmit } = useForm();
@@ -24,32 +25,34 @@ export default function Register() {
           </Link>
         </p>
         <form
-          onSubmit={handleSubmit((values) => {
+          onSubmit={handleSubmit(async(values) => {
             console.log(values);
+            const res = await registerRequest(values)
+            console.log(res);
           })}
         >
           <div className="user-box">
             <label className="font">Nombre</label>
             <input
               type="text"
-              {...register("clientName", { required: true })}
-            />
+              {...register("clientName")}
+              required />
           </div>
           <div className="user-box">
             <label>Apellido</label>
-            <input type="text" {...register("lastname", { required: true })} />
+            <input type="text" {...register("lastname")} required />
           </div>
           <div className="user-box">
             <label>Correo</label>
-            <input type="text" {...register("email", { required: true })} />
+            <input type="text" {...register("email")} required />
           </div>
           <div className="user-box">
             <label>Contraseña</label>
             <div className="password-input-container">
               <input
                 type={showPassword ? "text" : "password"}
-                {...register("password", { required: true })}
-              />
+                {...register("password")}
+                required />
               <FontAwesomeIcon
                 className="password-icon"
                 icon={showPassword ? faEyeSlash : faEye}

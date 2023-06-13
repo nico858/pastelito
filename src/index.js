@@ -1,6 +1,7 @@
 import express from 'express';
 import swaggerjsdoc from 'swagger-jsdoc';
 import swagger from 'swagger-ui-express';
+import cors from 'cors';
 
 import routerAPi from './routes/index.js';
 import connection from '../db/database.js';
@@ -12,6 +13,7 @@ const port = 3000;
 routerAPi(app);
 
 app.use(express.json());
+app.use(cors());
 
 import passport from 'passport';
 
