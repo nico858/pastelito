@@ -14,24 +14,24 @@ export const UserModel = (connection, DataTypes) => {
       allowNull: false,
       type: DataTypes.STRING,
     },
-    username: {
-      allowNull: false,
-      type: DataTypes.STRING,
-      unique: true
-    },
-    userPassword: {
-      allowNull: false,
-      type: DataTypes.STRING
-    },
     email: {
       allowNull: false,
       type: DataTypes.STRING,
       unique: true,
     },
+    userPassword: {
+      allowNull: false,
+      type: DataTypes.STRING
+    },
     phone: {
       allowNull: false,
       type: DataTypes.STRING,
       unique: true,
+    },
+    status: {
+      allowNull: false,
+      type: DataTypes.ENUM('active', 'inactive'),
+      defaultValue: 'active'
     },
     addressId: {
       allowNull: true,
@@ -42,14 +42,8 @@ export const UserModel = (connection, DataTypes) => {
     },
     role: {
       allowNull: false,
-      type: DataTypes.STRING,
+      type: DataTypes.ENUM('admin', 'customer'),
       defaultValue: 'customer'
-    },
-    siuuPoints: {
-      field: 'siuu_points',
-      allowNull: true,
-      type: DataTypes.DOUBLE,
-      defaultValue: 0
     },
     recoveryToken: {
       field: 'recovery_token',

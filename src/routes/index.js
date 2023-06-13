@@ -4,10 +4,8 @@ import addressRouter from './address.router.js';
 import orderDateRouter from './orderDate.router.js';
 import orderDetailRouter from './orderDetail.router.js';
 import productsRouter from './products.router.js';
-import rechargeRouter from './recharge.router.js';
 import usersRouter from './users.router.js';
 import authRouter from './auth.router.js';
-import categoriesRouter from './categories.router.js';
 
 
 
@@ -19,9 +17,7 @@ export default function routerApi(app) {
   router.use('/address', addressRouter);
   router.use('/orderDate', orderDateRouter);
   router.use('/orderDetail', orderDetailRouter);
-  router.use('/recharge', rechargeRouter);
   router.use('/products', productsRouter);
   router.use('/users', usersRouter);
   router.use('/auth', authRouter);
-  router.use('/categories', categoriesRouter);
 }

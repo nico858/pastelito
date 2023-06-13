@@ -8,14 +8,19 @@ export const OrderDateModel = (connection, DataTypes) => {
       primaryKey: true,
       type: DataTypes.INTEGER
     },
-    clientId: {
+    userId: {
       field: 'client_id',
       allowNull: false,
       type: DataTypes.INTEGER,
       onUpdate: 'CASCADE',
       onDelete: 'SET NULL'
     },
-    dateOrder: {
+    addressId: {
+      field: 'address_id',
+      allowNull: false,
+      type: DataTypes.INTEGER,
+    },
+    orderDate: {
       allowNull: false,
       type: DataTypes.DATE,
       field: 'created_at',

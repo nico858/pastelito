@@ -26,12 +26,9 @@ export const ProductModel = (connection, DataTypes) => {
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    categoryId: {
-      type: DataTypes.INTEGER,
+    category: {
+      type: DataTypes.STRING,
       allowNull: true,
-      field: 'category_id',
-      onUpdate: 'CASCADE',
-      onDelete: 'SET NULL'
     },
   })
 }
