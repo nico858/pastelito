@@ -17,5 +17,8 @@ export const config = {
 
     smtpEmail: process.env.SMTP_EMAIL,
     smtpPass: process.env.SMTP_PASSWORD,
+
+    googleClientId: process.env.GOOGLE_CLIENT_ID,
+    googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
   
 }

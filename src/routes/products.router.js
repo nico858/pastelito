@@ -179,7 +179,7 @@ router.get("/:id",
 
 router.post("/",
   passport.authenticate('jwt', {session: false}),
-  checkRoles(['Admin']),
+  checkRoles('admin'),
   validatorHandler(createProductSchema, "body"),
   async (req, res, next) => {
     try {
