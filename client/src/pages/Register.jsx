@@ -14,6 +14,12 @@ export default function Register() {
     setShowPassword(!showPassword);
   };
 
+  const onSubmit = handleSubmit(async (values) => {
+    //onsole.log(values);
+    const res = await registerRequest(values);
+    console.log(res);
+  });
+
   return (
     <div>
       <div className="login-box">
@@ -24,31 +30,45 @@ export default function Register() {
             Inicia Sesión
           </Link>
         </p>
-        <form
-          onSubmit={handleSubmit(async (values) => {
-            console.log(values);
-            const res = await registerRequest(values);
-            console.log(res);
-          })}
-        >
+        <form onSubmit={onSubmit}>
           <div className="user-box">
-            <label className="font">Nombre</label>
-            <input type="text" {...register("clientName")} required />
+            <input
+              type="text"
+              {...register("firstName")}
+              placeholder="Nombre completo"
+              required
+            />
           </div>
           <div className="user-box">
-            <label>Apellido</label>
-            <input type="text" {...register("lastname")} required />
+            <input
+              type="text"
+              {...register("lastName")}
+              placeholder="Apellido"
+              required
+            />
           </div>
           <div className="user-box">
-            <label>Correo</label>
-            <input type="text" {...register("email")} required />
+            <input
+              type="text"
+              {...register("email")}
+              placeholder="Correo electrónico"
+              required
+            />
           </div>
           <div className="user-box">
-            <label>Contraseña</label>
+            <input
+              type="number"
+              {...register("phone")}
+              placeholder="Teléfono"
+              required
+            />
+          </div>
+          <div className="user-box">
             <div className="password-input-container">
               <input
                 type={showPassword ? "text" : "password"}
-                {...register("password")}
+                {...register("userPassword")}
+                placeholder="Contraseña"
                 required
               />
               <FontAwesomeIcon

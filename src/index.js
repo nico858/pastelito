@@ -10,10 +10,11 @@ import { checkApiKey } from './middlewares/auth.handler.js';
 const app = express();
 const port = 3000;
 
+app.use(cors());
 routerAPi(app);
 
 app.use(express.json());
-app.use(cors());
+
 
 import passport from 'passport';
 
