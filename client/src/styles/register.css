@@ -9,10 +9,10 @@ h1 {
 
 .register-box{
   position: absolute;
-  top: 80%;
+  top: 85%;
   left: 50%;
   width: 400px;
-  padding: 40px;
+  padding: 10px;
   transform: translate(-50%, -50%);
   background: #f0f0f0;
   box-sizing: border-box;
@@ -28,7 +28,7 @@ h1 {
 }
 .login-box {
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 50%;
   width: 400px;
   padding: 40px;
@@ -44,6 +44,7 @@ h1 {
   padding: 0;
   color: #f36273;
   text-align: center;
+  cursor: pointer;
 }
 
 .login-box p {
@@ -112,19 +113,6 @@ button {
 button:hover {
   background-color: #f36273;
   color: #f0f0f0;
-}
-
-.login-box {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 400px;
-  padding: 40px;
-  background: #f0f0f0;
-  box-sizing: border-box;
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
-  border-radius: 10px;
 }
 
 .link {
