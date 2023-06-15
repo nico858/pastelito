@@ -3,6 +3,7 @@ import swaggerjsdoc from 'swagger-jsdoc';
 import swagger from 'swagger-ui-express';
 import cors from 'cors';
 import session from 'express-session';
+import morgan from 'morgan';
 
 import routerAPi from './routes/index.js';
 import connection from '../db/database.js';
@@ -15,6 +16,7 @@ app.use(cors());
 routerAPi(app);
 
 app.use(express.json());
+app.use(morgan('dev'));
 
 
 import passport from 'passport';
@@ -30,8 +32,11 @@ app.use(
       saveUninitialized: true,
     })
 );
-  
 
+app.use(passport.initialize());
+app.use(passport.session());
+
+  
 passport.use(LocalStrategy);
 passport.use(jwtStrategy);
 passport.use(googleStrategy);
@@ -39,6 +44,10 @@ passport.use(googleStrategy);
 passport.serializeUser((user, done) => {
     done(null, user);
 })
+
+passport.deserializeUser((user, done) => {
+    done(null, user);
+});
 
 const options = {
     definition: {
@@ -74,12 +83,12 @@ app.get(
   passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
     // Redirect or respond with the user profile information
-    res.json(req.user, req.accessToken, req.refreshToken);
+    res.json(req.user, '<a href="/auth/logout">Logout</a>');
   }
 );
 
-app.get('/auth/google/logut', (req, res) => {
-    req.logout();
+app.get('/auth/logout', (req, res) => {
+    req.logout();   
     res.redirect('/');
 });
 

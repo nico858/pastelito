@@ -190,7 +190,7 @@ router.post('/',
       const newUser = await service.create(body);
       res.status(201).json(newUser);
     } catch (error) {
-      res.send(error.message);
+      res.status(500).send(error.message);
     }
   }
 );

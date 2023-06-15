@@ -11,6 +11,6 @@ const options = {
 }
 
 export const googleStrategy = new GoogleStrategy(options, (req, accessToken, refreshToken, profile, done) => {
-    return done(null, accessToken, refreshToken);
+    return done(null, profile);
   }
 );
