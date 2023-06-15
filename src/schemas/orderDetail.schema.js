@@ -6,12 +6,19 @@ const orderId = Joi.number().integer();
 const productId = Joi.number().integer();
 const clientId = Joi.number().integer();
 const quantity = Joi.number().integer();
-const price = Joi.number().integer();
+const price = Joi.number().precision(2);
 
 export const createOrderDetailSchema = Joi.object({
-  productId: productId.required(),
+  products: Joi.array()
+    .items(
+      Joi.object({
+        productId: productId.required(),
+        quantity: quantity.required(),
+        })
+    )
+    .min(1)
+    .required(),
   clientId: clientId.required(),
-  quantity: quantity.required()
 });
 
 export const updateOrderDetailSchema = Joi.object({

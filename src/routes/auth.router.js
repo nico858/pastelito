@@ -95,6 +95,14 @@ import AuthService from './../services/auth.service.js';
 const router = express.Router();
 const service = new AuthService;
 
+// router.use(
+//   session({
+//     secret: 'secret-key',
+//     resave: false,
+//     saveUninitialized: false,
+//   })
+// );
+
 router.post('/login',
   passport.authenticate('local', {session: false}),
   async (req, res, next) => {
@@ -105,6 +113,7 @@ router.post('/login',
       res.status(401).send(error.message);
     }
 });
+
 
 router.post('/recovery',
   async (req, res, next) => {

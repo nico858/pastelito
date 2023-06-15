@@ -166,8 +166,8 @@ router.post('/',
   async (req, res, next) => {
     try {
       const body = req.body;
-      const newOrderDetail = await service.create(body);
-      res.status(201).json(newOrderDetail);
+      const { newOrderDetails, totalPrice } = await service.create(body);
+      res.status(201).json({ newOrderDetails, totalPrice });
     } catch (error) {
       next(error);
     }
