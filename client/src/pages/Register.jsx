@@ -3,21 +3,27 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
-import { registerRequest } from "../api/auth";
+import { useEffect, useState } from "react";
+import { useAuth } from "../context/AuthContext"
+import { useNavigate } from "react-router-dom"
+
 
 export default function Register() {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit} = useForm();
   const [showPassword, setShowPassword] = useState(false);
+  const { signUp, isAuthenticated, errors: registerErrors } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated) navigate("/homeVisit");
+  }, [isAuthenticated])
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
   const onSubmit = handleSubmit(async (values) => {
-    //onsole.log(values);
-    const res = await registerRequest(values);
-    console.log(res);
+    signUp(values);
   });
 
   return (
@@ -30,6 +36,16 @@ export default function Register() {
             Inicia Sesión
           </Link>
         </p>
+        {
+          registerErrors.map((error, index) => {
+            return (
+              <div key={index}>
+               <p style={{ color: 'white', fontSize: '17px', background: '#f36273' }}>{error}</p>
+              </div>
+            );
+          })
+        }
+
         <form onSubmit={onSubmit}>
           <div className="user-box">
             <input
