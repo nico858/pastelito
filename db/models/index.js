@@ -22,11 +22,11 @@ Address.hasOne(User, { as: 'user', foreignKey: 'addressId' });
 User.hasMany(OrderDate, { as: 'orders', foreignKey: 'userId' });
 OrderDate.belongsTo(User, {  as: 'user', foreignKey: 'userId' });
 
-Product.belongsToMany(OrderDate, { as: 'items', through: OrderDetail, foreignKey: 'productId', otherKey: 'orderDateId' });
-OrderDate.belongsToMany(Product, { as: 'orders', through: OrderDetail, foreignKey: 'orderDateId', otherKey: 'productId' });
+Product.belongsToMany(OrderDate, { as: 'items', through: OrderDetail, foreignKey: 'productId', otherKey: 'orderDateId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
+OrderDate.belongsToMany(Product, { as: 'orders', through: OrderDetail, foreignKey: 'orderDateId', otherKey: 'productId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
 
-OrderDetail.belongsTo(Product, { foreignKey: 'productId' });
-OrderDetail.belongsTo(OrderDate, { foreignKey: 'orderDateId' });
+OrderDetail.belongsTo(Product, { foreignKey: 'productId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
+OrderDetail.belongsTo(OrderDate, { foreignKey: 'orderDateId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
 
 
 connection.sync({ alter: true });

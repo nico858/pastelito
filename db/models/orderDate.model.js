@@ -23,7 +23,7 @@ export const OrderDateModel = (connection, DataTypes) => {
     totalPrice: {
       field: 'total_price',
       allowNull: true,
-      type: DataTypes.BIGINT,
+      type: DataTypes.INTEGER,
     },
     date: {
       allowNull: false,
