@@ -18,8 +18,8 @@ export const OrderDetailModel = (connection, DataTypes) => {
       allowNull: false,
       type: DataTypes.INTEGER,
       field: 'product_id',
-      onUpdate: 'CASCADE',
-      onDelete: 'SET NULL'
+      onUpdate: 'SET NULL',
+      onDelete: 'CASCADE'
     },
     quantity: {
       allowNull: false,
@@ -28,7 +28,7 @@ export const OrderDetailModel = (connection, DataTypes) => {
     },
     price: {
       allowNull: false,
-      type: DataTypes.BIGINT
+      type: DataTypes.INTEGER
     }
   })
 }
