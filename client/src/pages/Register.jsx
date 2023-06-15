@@ -15,7 +15,7 @@ export default function Register() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isAuthenticated) navigate("/homeVisit");
+    if (isAuthenticated) navigate("/login");
   }, [isAuthenticated])
 
   const togglePasswordVisibility = () => {

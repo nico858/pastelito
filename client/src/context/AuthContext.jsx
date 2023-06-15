@@ -24,6 +24,13 @@ export const AuthProvider = ({ children }) => {
       setIsAuthenticated(true);
     } catch (err) {
       console.log(err);
+      console.log(typeof err.response.data);
+      if (typeof err.response.data === "string") {
+        setErrors(
+          "Verifica que el teléfono tenga 10 dígitos y la contraseña tenga al menos 8 caracteres."
+        );
+        return;
+      }
       setErrors(err.response.data);
     }
   };
@@ -41,11 +48,11 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    if(errors.length > 0) {
+    if (errors.length > 0) {
       const timer = setTimeout(() => {
         setErrors([]);
       }, 7000);
-        return () => clearTimeout(timer);
+      return () => clearTimeout(timer);
     }
   }, [errors]);
 
