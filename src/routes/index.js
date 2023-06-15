@@ -12,10 +12,7 @@ import authRouter from './auth.router.js';
 export default function routerApi(app) {
   const router = express.Router();
   app.use(express.json());
-  app.use((err, req, res, next) => {
-    return res.json({ 
-      message: err.message})
-  });
+  
   app.use('/api/v1', router);
 
   router.use('/address', addressRouter);

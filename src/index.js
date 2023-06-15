@@ -18,6 +18,14 @@ routerAPi(app);
 app.use(express.json());
 app.use(morgan('dev'));
 
+app.use(
+    session({
+      secret: 'secret-key',
+      resave: false,
+      saveUninitialized: false,
+    })
+);
+
 
 import passport from 'passport';
 
@@ -25,13 +33,7 @@ import { LocalStrategy } from './utils/aut/strategies/local.strategy.js';
 import { jwtStrategy } from './utils/aut/strategies/jwt.strategy.js';
 import { googleStrategy } from './utils/aut/strategies/google.strategy.js';
 
-app.use(
-    session({
-      secret: 'secret-key',
-      resave: false,
-      saveUninitialized: true,
-    })
-);
+
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -76,21 +78,34 @@ app.get('/', /*checkApiKey,*/ (req, res) => {
     res.send('Hello World!');
 });
 
-app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+app.get('/api/v1/auth/login/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 app.get(
-  '/auth/google/callback',
+  '/api/v1/auth/login/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
+    const user = req.user;
     // Redirect or respond with the user profile information
-    res.json(req.user, '<a href="/auth/logout">Logout</a>');
+    // res.json(req.user);
+    res.send(`USER EMAIL ${user.emails[0].value}, <a href="/api/v1/auth/google/logout">Logout</a>`)
   }
 );
 
-app.get('/auth/logout', (req, res) => {
-    req.logout();   
-    res.redirect('/');
+app.get('/api/v1/auth/google/logout', (req, res) => {
+    req.logOut((err) => {
+        if (err) {
+            console.log('Error logging out:', err);
+        }
+        req.session.destroy((err) => {
+            if (err) {
+                console.log('Error destroying session:', err);
+            }
+            res.redirect('/');
+        });
+    });
 });
+
+
 
 app.listen(port, async () => {
     try{
