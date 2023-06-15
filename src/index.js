@@ -73,9 +73,14 @@ app.get(
   passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
     // Redirect or respond with the user profile information
-    res.json(req.user);
+    res.json(req.user, req.accessToken, req.refreshToken);
   }
 );
+
+app.get('/auth/google/logut', (req, res) => {
+    req.logout();
+    res.redirect('/');
+});
 
 app.listen(port, async () => {
     try{

@@ -165,7 +165,7 @@ router.get('/', async (req, res, next) => {
     const users = await service.find();
     res.json(users);
   } catch (error) {
-    next(error);
+    next(error.message);
   }
 });
 
@@ -190,7 +190,7 @@ router.post('/',
       const newUser = await service.create(body);
       res.status(201).json(newUser);
     } catch (error) {
-      next(error);
+      res.send(error.message);
     }
   }
 );
