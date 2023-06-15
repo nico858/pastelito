@@ -2,6 +2,7 @@ import express from 'express';
 import swaggerjsdoc from 'swagger-jsdoc';
 import swagger from 'swagger-ui-express';
 import cors from 'cors';
+import session from 'express-session';
 
 import routerAPi from './routes/index.js';
 import connection from '../db/database.js';
@@ -20,9 +21,24 @@ import passport from 'passport';
 
 import { LocalStrategy } from './utils/aut/strategies/local.strategy.js';
 import { jwtStrategy } from './utils/aut/strategies/jwt.strategy.js';
+import { googleStrategy } from './utils/aut/strategies/google.strategy.js';
+
+app.use(
+    session({
+      secret: 'secret-key',
+      resave: false,
+      saveUninitialized: true,
+    })
+);
+  
 
 passport.use(LocalStrategy);
 passport.use(jwtStrategy);
+passport.use(googleStrategy);
+
+passport.serializeUser((user, done) => {
+    done(null, user);
+})
 
 const options = {
     definition: {
@@ -47,8 +63,24 @@ app.use(
     swagger.setup(spacs)
 )
 
-app.get('/', checkApiKey, (req, res) => {
+app.get('/', /*checkApiKey,*/ (req, res) => {
     res.send('Hello World!');
+});
+
+app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+app.get(
+  '/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/' }),
+  (req, res) => {
+    // Redirect or respond with the user profile information
+    res.json(req.user, req.accessToken, req.refreshToken);
+  }
+);
+
+app.get('/auth/google/logut', (req, res) => {
+    req.logout();
+    res.redirect('/');
 });
 
 app.listen(port, async () => {

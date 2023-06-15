@@ -29,6 +29,6 @@ Product.belongsToMany(OrderDate, { through: OrderDetail });
 OrderDetail.belongsTo(Product, { as: 'item', foreignKey: 'orderDateId' });
 
 
-connection.sync({ alter: true });
+connection.sync();
 
 
