@@ -24,11 +24,11 @@ export const OrderDetailModel = (connection, DataTypes) => {
     quantity: {
       allowNull: false,
       type: DataTypes.INTEGER,
-      unique: true
+      unique: false
     },
     price: {
       allowNull: false,
-      type: DataTypes.INTEGER
+      type: DataTypes.BIGINT
     }
   })
 }

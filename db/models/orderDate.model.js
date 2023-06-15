@@ -17,10 +17,15 @@ export const OrderDateModel = (connection, DataTypes) => {
     },
     addressId: {
       field: 'address_id',
-      allowNull: false,
+      allowNull: true,
       type: DataTypes.INTEGER,
     },
-    orderDate: {
+    totalPrice: {
+      field: 'total_price',
+      allowNull: true,
+      type: DataTypes.BIGINT,
+    },
+    date: {
       allowNull: false,
       type: DataTypes.DATE,
       field: 'created_at',

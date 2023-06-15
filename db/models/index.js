@@ -20,15 +20,15 @@ User.hasOne(Address, { as: 'address', foreignKey: 'userId' });
 Address.hasOne(User, { as: 'user', foreignKey: 'addressId' });
 
 User.hasMany(OrderDate, { as: 'orders', foreignKey: 'userId' });
-OrderDate.belongsTo(User, {  as: 'user', foreignKey: 'orderDateId' });
+OrderDate.belongsTo(User, {  as: 'user', foreignKey: 'userId' });
 
-OrderDate.belongsToMany(OrderDetail, { as: 'items', through: OrderDetail, foreignKey: 'orderDateId', otherKey: 'productId' });
-OrderDetail.belongsTo(OrderDate, { foreignKey: 'orderDetailId' });
+Product.belongsToMany(OrderDate, { as: 'items', through: OrderDetail, foreignKey: 'productId', otherKey: 'orderDateId' });
+OrderDate.belongsToMany(Product, { as: 'orders', through: OrderDetail, foreignKey: 'orderDateId', otherKey: 'productId' });
 
-Product.belongsToMany(OrderDate, { through: OrderDetail });
-OrderDetail.belongsTo(Product, { as: 'item', foreignKey: 'orderDateId' });
+OrderDetail.belongsTo(Product, { foreignKey: 'productId' });
+OrderDetail.belongsTo(OrderDate, { foreignKey: 'orderDateId' });
 
 
-connection.sync();
+connection.sync({ alter: true });
 
 
