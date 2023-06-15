@@ -37,15 +37,9 @@ export default function Register() {
           </Link>
         </p>
         {
-          registerErrors.map((error, index) => {
-            return (
-              <div key={index}>
-               <p style={{ color: 'white', fontSize: '17px', background: '#f36273' }}>{error}</p>
-              </div>
-            );
-          })
-        }
+           <p style={{ color: 'white', fontSize: '15px', background: '#f36273', borderRadius: '7px'}}>{registerErrors}</p>
 
+        }
         <form onSubmit={onSubmit}>
           <div className="user-box">
             <input

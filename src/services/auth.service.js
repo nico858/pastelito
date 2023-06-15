@@ -13,7 +13,7 @@ export default class AuthService {
   async getUser(email, password) {
     const user = await service.findByEmail(email);
     if (!user) {
-      throw boom.unauthorized();
+      throw boom.unauthorized(), false;
     }
     const isMatch = await bcrypt.compare(password, user.userPassword);
     if(!isMatch) {

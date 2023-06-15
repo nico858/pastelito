@@ -9,7 +9,7 @@ import { useAuth } from "../context/AuthContext";
 export default function Register() {
   const { register, handleSubmit } = useForm();
   const [showPassword, setShowPassword] = useState(false);
-  const {signIn} = useAuth();
+  const {signIn, errors: signInErrors} = useAuth();
 
   const onSubmit = handleSubmit((data) => {
     signIn(data);
@@ -24,6 +24,10 @@ export default function Register() {
     <div>
       <div className="login-box">
         <h2>Iniciar sesión en Benzema Cakes</h2>
+        {
+           <p style={{ color: 'white', fontSize: '17px', background: '#f36273', borderRadius: '7px'}}>{signInErrors}</p>
+
+        }
         <form onSubmit={onSubmit}>
           <div className="user-box">
             <label className="font">Correo electrónico</label>

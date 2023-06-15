@@ -13,7 +13,7 @@
  *          application/json:
  *            schema:
  *              type: object
- *              properties:  
+ *              properties:
  *                email:
  *                  type: string
  *                password:
@@ -42,7 +42,7 @@
  *             type: object
  *             properties:
  *              email:
- *                type: string 
+ *                type: string
  *     responses:
  *       200:
  *         description: The generated token.
@@ -110,7 +110,7 @@ router.post('/login',
       const user = req.user;
       res.json(service.signToken(user));
     } catch (error) {
-      res.status(401).send(error.message);
+      res.status(404).json(["Por favor revisa tus credenciales"]);
     }
 });
 
