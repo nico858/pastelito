@@ -3,14 +3,16 @@ import { useForm } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-import { registerRequest } from "../api/auth";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export default function Register() {
   const { register, handleSubmit } = useForm();
   const [showPassword, setShowPassword] = useState(false);
+  const {signIn} = useAuth();
 
   const onSubmit = handleSubmit((data) => {
+    signIn(data);
     console.log(data);
   });
 
@@ -25,7 +27,7 @@ export default function Register() {
         <form onSubmit={onSubmit}>
           <div className="user-box">
             <label className="font">Correo electrónico</label>
-            <input type="text" {...register("email")} required />
+            <input type="email" {...register("email")} required />
           </div>
           <div className="user-box">
             <label>Contraseña</label>

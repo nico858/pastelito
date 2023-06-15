@@ -65,7 +65,7 @@ export default function Register() {
           </div>
           <div className="user-box">
             <input
-              type="text"
+              type="email"
               {...register("email")}
               placeholder="Correo electrónico"
               required
