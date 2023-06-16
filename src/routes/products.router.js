@@ -152,7 +152,7 @@ const router = express.Router();
 const service = new ProductsService();
 
 router.get("/",
-  // passport.authenticate("jwt", { session: false }),
+  passport.authenticate("jwt", { session: false }),
   async (req, res, next) => {
     try {
       const products = await service.find();
@@ -164,7 +164,7 @@ router.get("/",
 );
 
 router.get("/:id",
-  // passport.authenticate("jwt", { session: false }),
+  passport.authenticate("jwt", { session: false }),
   validatorHandler(getProductSchema, "params"),
   async (req, res, next) => {
     try {
@@ -178,8 +178,8 @@ router.get("/:id",
 );
 
 router.post("/",
-  // passport.authenticate('jwt', {session: false}),
-  // checkRoles('admin'),
+  passport.authenticate('jwt', {session: false}),
+  checkRoles('admin'),
   validatorHandler(createProductSchema, "body"),
   async (req, res, next) => {
     try {
@@ -193,8 +193,8 @@ router.post("/",
 );
 
 router.patch("/:id",
-  // passport.authenticate('jwt', {session: false}),
-  // checkRoles(['Admin']),
+  passport.authenticate('jwt', {session: false}),
+  checkRoles(['Admin']),
   validatorHandler(getProductSchema, "params"),
   validatorHandler(updateProductSchema, "body"),
   async (req, res, next) => {
@@ -210,8 +210,8 @@ router.patch("/:id",
 );
 
 router.delete("/:id",
-  // passport.authenticate('jwt', {session: false}),
-  // checkRoles(['Admin']),
+  passport.authenticate('jwt', {session: false}),
+  checkRoles(['Admin']),
   validatorHandler(getProductSchema, "params"),
   async (req, res, next) => {
     try {
