@@ -165,7 +165,7 @@ router.get('/', async (req, res, next) => {
     const users = await service.find();
     res.json(users);
   } catch (error) {
-    next(error.message);
+    next(error);
   }
 });
 
@@ -190,7 +190,7 @@ router.post('/',
       const newUser = await service.create(body);
       res.status(201).json(newUser);
     } catch (error) {
-      res.status(500).json(["El correo electrónico o el telefóno ya estan registrados, por favor intente con otro."]);
+      next(error);
     }
   }
 );

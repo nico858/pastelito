@@ -7,8 +7,12 @@ export function logErrors (err, req, res, next) {
 }
 
 export function errorHandler(err, req, res, next) {
-  res.status(500).json({
-    message: err.message,
+  const statusCode = err.statusCode || 500;
+  const message = err.message || 'Internal server error';
+
+  res.status(statusCode).json({
+    status: statusCode,
+    message: message,
     stack: err.stack,
   });
 }
@@ -16,7 +20,10 @@ export function errorHandler(err, req, res, next) {
 export function boomErrorHandler(err, req, res, next) {
   if (err.isBoom) {
     const { output } = err;
-    res.status(output.statusCode).json(output.payload);
+    res.status(output.statusCode).json({
+      status: output.statusCode,
+      message: output.payload.message,
+    });
   }
   next(err);
 }
@@ -26,6 +33,7 @@ export function ormErrorHandler(err, req, res, next) {
     res.status(409).json({
       statusCode: 409,
       message: err.name,
+      stack: err.stack,
       errors: err.errors
     });
   }

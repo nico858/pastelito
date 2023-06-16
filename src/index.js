@@ -8,6 +8,7 @@ import morgan from 'morgan';
 import routerAPi from './routes/index.js';
 import connection from '../db/database.js';
 import { checkApiKey } from './middlewares/auth.handler.js';
+import { errorHandler, boomErrorHandler, ormErrorHandler } from './middlewares/error.handler.js';
 
 const app = express();
 const port = 3000;
@@ -25,6 +26,10 @@ app.use(
       saveUninitialized: false,
     })
 );
+
+app.use(errorHandler);
+app.use(boomErrorHandler);
+app.use(ormErrorHandler);
 
 
 import passport from 'passport';
