@@ -110,7 +110,7 @@ router.post('/login',
       const user = req.user;
       res.json(service.signToken(user));
     } catch (error) {
-      res.status(401).send(error.message);
+      next(error);
     }
 });
 
