@@ -21,7 +21,6 @@ export const AuthProvider = ({ children }) => {
       const res = await registerRequest(user);
       console.log(res.data);
       setUser(res.data);
-      setIsAuthenticated(true);
     } catch (err) {
       console.log(err);
       console.log(typeof err.response.data);
@@ -39,6 +38,8 @@ export const AuthProvider = ({ children }) => {
     try {
       const res = await loginRequest(user);
       console.log(res.data);
+      setIsAuthenticated(true);
+      setUser(res.data);
     } catch (err) {
       console.log(err.response.data);
       setErrors(

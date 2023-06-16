@@ -118,6 +118,7 @@ button:hover {
 .link {
   color: #f36273;
   font-size: medium;
+  font-weight: bold;
   text-decoration: none;
 }
 
@@ -126,3 +127,21 @@ button:hover {
   justify-content: center;
 }
 
+.googleButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2%;
+  background-color: #fff;
+  color: black;
+}
+
+.googleButton img {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+}
+.googleButton:hover {
+  background-color: #fff;
+  color: #2a9c9d;
+}
