@@ -83,16 +83,36 @@ app.get('/', /*checkApiKey,*/ (req, res) => {
     res.send('Hello World!');
 });
 
+import UserService from './services/user.service.js';
+import AuthService from './services/auth.service.js';
+import createPassword from './utils/passwordGenerator.js';
+
+const userService = new UserService();
+const authService = new AuthService();
+
 app.get('/api/v1/auth/login/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 app.get(
   '/api/v1/auth/login/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
-  (req, res) => {
-    const user = req.user;
-    // Redirect or respond with the user profile information
-    // res.json(req.user);
-    res.send(`USER EMAIL ${user.emails[0].value}, <a href="/api/v1/auth/google/logout">Logout</a>`)
+  async (req, res, next) => {
+    try{
+        const googleUser = req.user;
+        const userInfo = {
+            firstName: googleUser.given_name,
+            lastName: googleUser.family_name,
+            email: googleUser.emails[0].value,
+            userPassword: createPassword(),
+            phone: googleUser.id,
+            role: 'customer',
+        }
+        console.log(userInfo.userPassword);
+        const newUser = await userService.create(userInfo);
+        res.status(201).json(authService.signToken(newUser));
+    } catch(error) {
+        next(error)
+    }
+    
   }
 );
 
