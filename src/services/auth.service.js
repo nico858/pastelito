@@ -30,11 +30,6 @@ export default class AuthService {
       role: user.role
     };
     const token = jwt.sign(payload, config.jwtSecret);
-
-    const expirationTime = 30 * 60 * 1000; // 30 minutos en milisegundos
-    const expirationDate = new Date(Date.now() + expirationTime);
-    res.setHeader('Set-Cookie', `token=${token}; HttpOnly; Secure; Expires=${expirationDate.toUTCString()}`);
-
     return {
       user,
       token

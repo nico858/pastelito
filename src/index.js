@@ -13,7 +13,10 @@ import { errorHandler, boomErrorHandler, ormErrorHandler } from './middlewares/e
 const app = express();
 const port = 3000;
 
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true,
+}));
 routerAPi(app);
 
 app.use(express.json());

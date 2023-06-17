@@ -31,9 +31,11 @@ export const AuthProvider = ({ children }) => {
   const signIn = async (user) => {
     try {
       const res = await loginRequest(user);
-      console.log(res.data);
+      console.log(res.data.token);
       setIsAuthenticated(true);
       setUser(res.data);
+      // Guardar la respuesta en el localStorage
+      localStorage.setItem('userData', JSON.stringify(res.data.token));
     } catch (err) {
       console.log(err.response.data);
       setErrors(
@@ -41,6 +43,11 @@ export const AuthProvider = ({ children }) => {
       );
     }
   };
+  const localStorageValue = localStorage.getItem('userData');
+
+  document.cookie = `miCookie=${localStorageValue}; path=/`.replace(/\"/g, '');
+  
+
 
   useEffect(() => {
     if (errors.length > 0) {
