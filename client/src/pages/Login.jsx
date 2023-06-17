@@ -70,22 +70,22 @@ export default function Register() {
           </div>
         </form>
         <div>
-            <button className="googleButton" type="submit" onClick={handleButton}>
-              <img
-                src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
-                alt="Google Logo"
-              />
-              Iniciar sesión con Google
-            </button>
-          </div>
-      </div>
-      <div className="register-box">
-        <p>
-          ¿No tienes una cuenta?{" "}
-          <Link className="fontStyle" to="/register">
-            Regístrate
-          </Link>
-        </p>
+          <button className="googleButton" type="submit" onClick={handleButton}>
+            <img
+              src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+              alt="Google Logo"
+            />
+            Iniciar sesión con Google
+          </button>
+        </div>
+        <div className="register">
+          <p className="hola">
+            ¿No tienes una cuenta?
+            <Link className="fontStyle" to="/register">
+              Regístrate
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );

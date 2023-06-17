@@ -21,16 +21,10 @@ export const AuthProvider = ({ children }) => {
       const res = await registerRequest(user);
       console.log(res.data);
       setUser(res.data);
+      setIsAuthenticated(true);
     } catch (err) {
       console.log(err);
-      console.log(typeof err.response.data);
-      if (typeof err.response.data === "string") {
-        setErrors(
-          "Verifica que el teléfono tenga 10 dígitos y la contraseña tenga al menos 8 caracteres."
-        );
-        return;
-      }
-      setErrors(err.response.data);
+      setErrors(err.response.data.message);
     }
   };
 

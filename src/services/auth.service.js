@@ -16,7 +16,7 @@ export default class AuthService {
       throw boom.unauthorized(), false;
     }
     const isMatch = await bcrypt.compare(password, user.userPassword);
-    if(!isMatch) {
+    if (!isMatch) {
       throw boom.unauthorized(), false;
     }
     delete user.dataValues.userPassword;
@@ -24,12 +24,17 @@ export default class AuthService {
     return user;
   }
 
-  signToken(user) {
+  signToken(user, res) {
     const payload = {
       sub: user.id,
       role: user.role
-    }
+    };
     const token = jwt.sign(payload, config.jwtSecret);
+
+    const expirationTime = 30 * 60 * 1000; // 30 minutos en milisegundos
+    const expirationDate = new Date(Date.now() + expirationTime);
+    res.setHeader('Set-Cookie', `token=${token}; HttpOnly; Secure; Expires=${expirationDate.toUTCString()}`);
+
     return {
       user,
       token
@@ -42,9 +47,9 @@ export default class AuthService {
       throw boom.unauthorized();
     }
     const payload = { sub: user.id };
-    const token = jwt.sign(payload, config.jwtSecret, {expiresIn: '15min'});
+    const token = jwt.sign(payload, config.jwtSecret, { expiresIn: '15min' });
     const link = `http://alphafront.com/recovery?token=${token}`;
-    await service.update(user.id, {recoveryToken: token});
+    await service.update(user.id, { recoveryToken: token });
     const mail = {
       from: config.smtpEmail,
       to: `${user.email}`,
@@ -59,13 +64,13 @@ export default class AuthService {
     try {
       const payload = jwt.verify(token, config.jwtSecret);
       const user = await service.findOne(payload.sub);
-      if(user.recoveryToken !== token){
+      if (user.recoveryToken !== token) {
         throw boom.unauthorized();
       }
       const hash = await bcrypt.hash(newPassword, 10);
-      await service.update(user.id, {recoveryToken: null, userPassword: hash});
-      return { message: 'password changed '};
-    } catch(error) {
+      await service.update(user.id, { recoveryToken: null, userPassword: hash });
+      return { message: 'password changed ' };
+    } catch (error) {
       throw boom.unauthorized();
     }
   }
@@ -76,8 +81,8 @@ export default class AuthService {
       secure: true,
       port: 465,
       auth: {
-          user: config.smtpEmail,
-          pass: config.smtpPass
+        user: config.smtpEmail,
+        pass: config.smtpPass
       },
     });
     await transporter.sendMail(infoMail);

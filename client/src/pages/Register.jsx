@@ -5,17 +5,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext"
-import { useNavigate } from "react-router-dom"
-
 
 export default function Register() {
-  const { register, handleSubmit} = useForm();
+  const { register, handleSubmit } = useForm();
   const [showPassword, setShowPassword] = useState(false);
   const { signUp, isAuthenticated, errors: registerErrors } = useAuth();
-  const navigate = useNavigate();
 
   useEffect(() => {
-    if (isAuthenticated) navigate("/login");
+    if (isAuthenticated)
+      window.location.replace("/login");
   }, [isAuthenticated])
 
   const togglePasswordVisibility = () => {
@@ -26,8 +24,12 @@ export default function Register() {
     signUp(values);
   });
 
+  const handleButton = () => {
+    window.location.href = "http://localhost:3000/api/v1/auth/login/google";
+  };
+
   return (
-    <div>
+    <div className="con">
       <div className="login-box">
         <h2>Regístrate</h2>
         <p>
@@ -37,8 +39,47 @@ export default function Register() {
           </Link>
         </p>
         {
-           <p style={{ color: 'white', fontSize: '15px', background: '#f36273', borderRadius: '7px'}}>{registerErrors}</p>
+          registerErrors.length === 50 && (
+            <p style={{ color: 'white', fontSize: '15px', background: '#f36273', borderRadius: '7px' }}>
+              El teléfono debe tener 10 dígitos
+            </p>
+          )
+        }
+        {
+          registerErrors.length === 56 && (
+            <p style={{ color: 'white', fontSize: '15px', background: '#f36273', borderRadius: '7px' }}>
+              La contraseña debe tener al menos 8 caracteres
+            </p>
+          )
+        }
+        {
+          registerErrors.length === 16 && (
+            <p style={{ color: 'white', fontSize: '15px', background: '#f36273', borderRadius: '7px' }}>
+              El correo electrónico o el teléfono ya están registrados, por favor intente con otros datos
+            </p>
+          )
+        }
+        {
+          registerErrors.length === 108 && (
+            <p style={{ color: 'white', fontSize: '15px', background: '#f36273', borderRadius: '7px' }}>
+              La contraseña debe tener al menos 8 caracteres y el numero de teléfono debe tener 10 dígitos.
+            </p>
+          )
 
+        }
+        {
+          registerErrors.length === 121 && (
+            <p style={{ color: 'white', fontSize: '15px', background: '#f36273', borderRadius: '7px' }}>
+              La longitud de la contraseña debe tener al menos 8 caracteres y la el teléfono debe tener 10 dígitos.
+            </p>
+          )
+        }
+        {
+          registerErrors.length === 63 && (
+            <p style={{ color: 'white', fontSize: '15px', background: '#f36273', borderRadius: '7px' }}>
+              El telefono debe tener 10 dígitos
+            </p>
+          )
         }
         <form onSubmit={onSubmit}>
           <div className="user-box">
@@ -92,6 +133,15 @@ export default function Register() {
             <button type="submit">Registrarse</button>
           </div>
         </form>
+        <div>
+          <button className="googleButton" type="submit" onClick={handleButton}>
+            <img
+              src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+              alt="Google Logo"
+            />
+            Iniciar sesión con Google
+          </button>
+        </div>
       </div>
     </div>
   );
