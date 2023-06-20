@@ -1,5 +1,6 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import { registerRequest, loginRequest } from "../api/auth";
+import Cookies from "js-cookie";
 
 export const AuthContext = createContext();
 
@@ -34,20 +35,34 @@ export const AuthProvider = ({ children }) => {
       console.log(res.data.token);
       setIsAuthenticated(true);
       setUser(res.data);
-      // Guardar la respuesta en el localStorage
-      localStorage.setItem('userData', JSON.stringify(res.data.token));
+      // Save token in local storage
+      localStorage.setItem("userData", JSON.stringify(res.data.token));
     } catch (err) {
       console.log(err.response.data);
-      setErrors(
-        "Las credenciales proporcionadas no son válidas. Por favor, verifique su email y contraseña e intente nuevamente."
-      );
-    }
-  };
-  const localStorageValue = localStorage.getItem('userData');
+      localStorage.setItem("userData", JSON.stringify(err.response.data));
+    setErrors(
+      "Las credenciales proporcionadas no son válidas. Por favor, verifique su email y contraseña e intente nuevamente."
+    );
+  }
+};
 
-  document.cookie = `miCookie=${localStorageValue}; path=/`.replace(/\"/g, '');
-  
+  const localStorageValue = localStorage.getItem("userData");
+  document.cookie = `userData=${localStorageValue}; path=/`.replace(/\"/g, "");
 
+  //Para eliminar la cookie
+  // const limitTime = 10000;
+
+  // setTimeout(() => {
+  //   localStorage.removeItem("userData");
+
+  //   // Eliminar la cookie existente
+  //   document.cookie =
+  //     "userData=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
+  //   // Establecer una nueva cookie con el valor actualizado desde el localStorage
+  //   const updatedValue = localStorage.getItem("userData");
+  //   document.cookie = `userData=${updatedValue}; path=/`;
+  // }, limitTime);
 
   useEffect(() => {
     if (errors.length > 0) {
@@ -57,6 +72,14 @@ export const AuthProvider = ({ children }) => {
       return () => clearTimeout(timer);
     }
   }, [errors]);
+
+  useEffect(() => {
+    const cookies = Cookies.get("userData");
+
+    if (cookies) {
+      console.log(cookies);
+    }
+  }, []);
 
   return (
     <AuthContext.Provider
