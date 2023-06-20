@@ -109,9 +109,13 @@ app.get(
             phone: googleUser.id,
             role: 'customer',
         }
-        console.log(userInfo.userPassword);
-        const newUser = await userService.create(userInfo);
-        res.status(201).json(authService.signToken(newUser));
+        const registeredUser = await userService.findByEmail(userInfo.email);
+        if (!registeredUser) {
+            const newUser = await userService.create(userInfo);
+            res.status(201).json(authService.signToken(newUser));
+        } else {
+            res.status(201).json(authService.signToken(registeredUser));
+        }
     } catch(error) {
         next(error)
     }
