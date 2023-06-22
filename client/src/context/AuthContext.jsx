@@ -1,6 +1,7 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import { registerRequest, loginRequest } from "../api/auth";
 import Cookies from "js-cookie";
+import { Navigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 
@@ -16,6 +17,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [errors, setErrors] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const signUp = async (user) => {
     try {
@@ -40,11 +42,11 @@ export const AuthProvider = ({ children }) => {
     } catch (err) {
       console.log(err.response.data);
       localStorage.setItem("userData", JSON.stringify(err.response.data));
-    setErrors(
-      "Las credenciales proporcionadas no son válidas. Por favor, verifique su email y contraseña e intente nuevamente."
-    );
-  }
-};
+      setErrors(
+        "Las credenciales proporcionadas no son válidas. Por favor, verifique su email y contraseña e intente nuevamente."
+      );
+    }
+  };
 
   const localStorageValue = localStorage.getItem("userData");
   document.cookie = `userData=${localStorageValue}; path=/`.replace(/\"/g, "");
@@ -74,11 +76,18 @@ export const AuthProvider = ({ children }) => {
   }, [errors]);
 
   useEffect(() => {
-    const cookies = Cookies.get("userData");
+    function checkLogin() {
+      const cookie = Cookies.get("userData");
 
-    if (cookies) {
-      console.log(cookies);
+      if (cookie == "Unauthorized") {
+        setIsAuthenticated(false);
+        setLoading(false);
+        return setUser(null);
+      }
+      setIsAuthenticated(true);
+      setLoading(false);
     }
+    checkLogin();
   }, []);
 
   return (
@@ -86,6 +95,7 @@ export const AuthProvider = ({ children }) => {
       value={{
         signUp,
         signIn,
+        loading,
         user,
         isAuthenticated,
         errors,
