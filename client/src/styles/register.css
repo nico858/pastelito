@@ -1,10 +1,11 @@
 h1 {
   color: #fff;
 }
-.con{
-  overflow: auto;
-  height: 100vh;
+
+.container {
+  overflow-x: hidden;
 }
+
 .fontStyle {
   color: #f36273;
   font-size: medium;

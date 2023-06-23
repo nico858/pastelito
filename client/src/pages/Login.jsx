@@ -3,13 +3,16 @@ import { useForm } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { useEffect } from "react";
 
 export default function Register() {
   const { register, handleSubmit } = useForm();
   const [showPassword, setShowPassword] = useState(false);
-  const { signIn, errors: signInErrors } = useAuth();
+  const { signIn, errors: signInErrors, isAuthenticated } = useAuth();
+
+  const navigate = useNavigate();
 
   const onSubmit = handleSubmit((data) => {
     signIn(data);
@@ -23,6 +26,13 @@ export default function Register() {
   const handleButton = () => {
     window.location.href = "http://localhost:3000/api/v1/auth/login/google";
   };
+
+  useEffect(() => {
+    if(isAuthenticated) {
+      console.log("isAuthenticated", isAuthenticated);
+      navigate("/");
+    }
+  }, [isAuthenticated]);
 
   return (
     <div>

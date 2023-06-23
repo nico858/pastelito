@@ -1,7 +1,6 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import { registerRequest, loginRequest } from "../api/auth";
 import Cookies from "js-cookie";
-import { Navigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 
@@ -79,12 +78,13 @@ export const AuthProvider = ({ children }) => {
     function checkLogin() {
       const cookie = Cookies.get("userData");
 
-      if (cookie == "Unauthorized" || cookie == undefined || cookie == null) {
+      if (cookie == "Unauthorized" || cookie == "undefined" || cookie == "null") {
         setIsAuthenticated(false);
         setLoading(false);
         return setUser(null);
       }
       setIsAuthenticated(true);
+      setUser(cookie);
       setLoading(false);
     }
     checkLogin();

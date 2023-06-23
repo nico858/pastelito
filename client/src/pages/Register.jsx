@@ -29,7 +29,7 @@ export default function Register() {
   };
 
   return (
-    <div className="con">
+    <div className="container">
       <div className="login-box">
         <h2>Regístrate</h2>
         <p>

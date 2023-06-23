@@ -8,6 +8,7 @@ import HomePage from "./pages/HomePage";
 import CupCakes from "./pages/CupCakes";
 import CustomCupCakes from "./pages/CustomCupCakes";
 import Profile from "./pages/Profile";
+import NavBar from "./components/NavBar";
 
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -15,6 +16,7 @@ function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
+        <NavBar />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<Login />} />
@@ -23,7 +25,7 @@ function App() {
           <Route path="/catalogo" element={<CupCakes />} />
           <Route path="/customCupCakes" element={<CustomCupCakes />} />
 
-          <Route element={<ProtectedRoute />} >
+          <Route element={<ProtectedRoute />}>
             <Route path="/generateOrder" element={<Order />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/shoppingCart" element={<h1>carrito de compras</h1>} />
