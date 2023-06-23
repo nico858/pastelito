@@ -8,6 +8,7 @@ h1 {
 .fontStyle {
   color: #f36273;
   font-size: medium;
+  font-weight: bold;
 }
 
 .login-box {
@@ -37,6 +38,7 @@ h1 {
   color: #2a9c9d;
   text-align: center;
   font-size: medium;
+  font-weight: bold;
 }
 
 .login-box .user-box {

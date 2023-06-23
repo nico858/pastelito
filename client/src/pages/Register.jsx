@@ -33,7 +33,7 @@ export default function Register() {
       <div className="login-box">
         <h2>Regístrate</h2>
         <p>
-          ¿Ya tienes una cuenta?{" "}
+          ¿Ya tienes una cuenta? &nbsp;
           <Link className="fontStyle" to="/login">
             Inicia Sesión
           </Link>
@@ -139,7 +139,7 @@ export default function Register() {
               src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
               alt="Google Logo"
             />
-            Iniciar sesión con Google
+            Inicia sesión con Google
           </button>
         </div>
       </div>

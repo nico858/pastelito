@@ -27,7 +27,7 @@ export default function Register() {
   return (
     <div>
       <div className="login-box">
-        <h2>Iniciar sesión en Benzema Cakes</h2>
+        <h2>Inicia sesión en Benzema Cakes</h2>
         {
           <p
             style={{
@@ -66,7 +66,7 @@ export default function Register() {
             </p>
           </div>
           <div className="centerButton">
-            <button type="submit">Iniciar sesión</button>
+            <button type="submit">Inicia sesión</button>
           </div>
         </form>
         <div>
@@ -75,12 +75,13 @@ export default function Register() {
               src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
               alt="Google Logo"
             />
-            Iniciar sesión con Google
+            Inicia sesión con Google
           </button>
         </div>
         <div className="register">
           <p className="hola">
             ¿No tienes una cuenta?
+            &nbsp;
             <Link className="fontStyle" to="/register">
               Regístrate
             </Link>

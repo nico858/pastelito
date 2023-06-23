@@ -79,7 +79,7 @@ export const AuthProvider = ({ children }) => {
     function checkLogin() {
       const cookie = Cookies.get("userData");
 
-      if (cookie == "Unauthorized") {
+      if (cookie == "Unauthorized" || cookie == undefined || cookie == null) {
         setIsAuthenticated(false);
         setLoading(false);
         return setUser(null);
