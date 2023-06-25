@@ -16,6 +16,8 @@
     "axios": "^1.4.0",
     "google-translate-api": "^2.3.0",
     "js-cookie": "^3.0.5",
+    "jsonwebtoken": "^9.0.0",
+    "jwt-decode": "^3.1.2",
     "node-sass": "^9.0.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
@@ -23,6 +25,7 @@
     "react-hook-form": "^7.44.3",
     "react-icons": "^4.4.0",
     "react-router-dom": "^6.12.1",
+    "safe-buffer": "^5.2.1",
     "sass": "^1.55.0"
   },
   "devDependencies": {

@@ -2,14 +2,39 @@ import React, { useEffect, useState } from "react";
 import { BiMenuAltRight } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
 import { Link, useLocation } from "react-router-dom";
-import {useAuth} from "../context/AuthContext";
+import { useAuth } from "../context/AuthContext";
+import jwtDecode from 'jwt-decode';
 import "../styles/navBar.scss";
 
 function Navbar() {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const { isAuthenticated, user} = useAuth();
-  console.log(isAuthenticated, user);
+  const [tokenInfo, setTokenInfo] = useState(null);
+
+
+  useEffect(() => {
+    const token = document.cookie.replace(
+      /(?:(?:^|.*;\s*)userData\s*=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
+
+    if (token) {
+      try {
+        const decodedToken = jwtDecode(token);
+        setTokenInfo(decodedToken);
+      } catch (error) {
+        //console.log("Error al decodificar el token:", error.message);
+        return;
+      }
+    } else {
+      //console.log("No se encontró el token en la cookie.");
+      return;
+    }
+  }, [user]);
+
+    if(tokenInfo) console.log(tokenInfo.firstname);
+
 
   const [size, setSize] = useState({
     width: 0,
@@ -47,9 +72,8 @@ function Navbar() {
         {(location.pathname !== "/login" && location.pathname !== "/register") && (
           <>
             <nav
-              className={`header__content__nav ${
-                menuOpen && size.width < 768 ? "isMenu" : ""
-              }`}
+              className={`header__content__nav ${menuOpen && size.width < 768 ? "isMenu" : ""
+                }`}
             >
               <ul>
                 <li>
