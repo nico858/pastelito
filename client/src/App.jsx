@@ -23,6 +23,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/about" element={<h1>about</h1>} />
           <Route path="/catalogo" element={<CupCakes />} />
+          <Route path="/buy" element={<h1>caracteristicas</h1>} />
           <Route path="/customCupCakes" element={<CustomCupCakes />} />
           <Route path="/shoppingCar" element={<h1>carrito de compras</h1>} />
 

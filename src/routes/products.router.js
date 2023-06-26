@@ -152,7 +152,7 @@ const router = express.Router();
 const service = new ProductsService();
 
 router.get("/",
-  passport.authenticate("jwt", { session: false }),
+  //passport.authenticate("jwt", { session: false }),
   async (req, res, next) => {
     try {
       const products = await service.find();
@@ -164,7 +164,7 @@ router.get("/",
 );
 
 router.get("/:id",
-  passport.authenticate("jwt", { session: false }),
+  //passport.authenticate("jwt", { session: false }),
   validatorHandler(getProductSchema, "params"),
   async (req, res, next) => {
     try {
