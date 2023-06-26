@@ -24,11 +24,11 @@ function App() {
           <Route path="/about" element={<h1>about</h1>} />
           <Route path="/catalogo" element={<CupCakes />} />
           <Route path="/customCupCakes" element={<CustomCupCakes />} />
+          <Route path="/shoppingCar" element={<h1>carrito de compras</h1>} />
 
           <Route element={<ProtectedRoute />}>
             <Route path="/generateOrder" element={<Order />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/shoppingCart" element={<h1>carrito de compras</h1>} />
           </Route>
         </Routes>
       </BrowserRouter>

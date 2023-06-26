@@ -9,9 +9,9 @@ import "../styles/navBar.scss";
 function Navbar() {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
-  const { isAuthenticated, user} = useAuth();
+  const { isAuthenticated, user } = useAuth();
   const [tokenInfo, setTokenInfo] = useState(null);
-
+  const fotoPerfil = "https://cdn-icons-png.flaticon.com/512/1033/1033396.png?w=740&t=st=1687752473~exp=1687753073~hmac=0d64ea1112ad1d96de34ad8917b2badb887ec29e2785c6d6152d2d4141ad4db4"
 
   useEffect(() => {
     const token = document.cookie.replace(
@@ -33,8 +33,12 @@ function Navbar() {
     }
   }, [user]);
 
-    if(tokenInfo) console.log(tokenInfo.firstname);
+  //if (tokenInfo) console.log(tokenInfo.firstname);
 
+  const handleLogout = () => {
+    localStorage.clear(); // Borra los datos del localStorage
+    window.location.reload(); // Recarga la página
+  };
 
   const [size, setSize] = useState({
     width: 0,
@@ -75,20 +79,57 @@ function Navbar() {
               className={`header__content__nav ${menuOpen && size.width < 768 ? "isMenu" : ""
                 }`}
             >
-              <ul>
-                <li>
-                  <Link to="/catalogo">Catalogo</Link>
-                </li>
-                <li>
-                  <Link to="/customCupCakes">Crea tu pastel</Link>
-                </li>
-                <Link to="/register">
-                  <button className="btn">Inscríbete</button>
-                </Link>
-                <Link to="/login">
-                  <button className="btn btn__login">Inicia sesión</button>
-                </Link>
-              </ul>
+              {isAuthenticated ? (
+                <>
+                  <ul>
+                    <li>
+                      <Link to="/catalogo">Catalogo</Link>
+                    </li>
+                    <li>
+                      <Link to="/customCupCakes">Crea tu pastel</Link>
+                    </li>
+                    <li>
+                      <Link to="/shoppingCar">Carrito</Link>
+                    </li>
+                    <li>
+                      <Link to="/profile" data-tip="Perfil" data-for="profileTooltip">
+                        <img src={fotoPerfil} className="fotoPerfil" alt="Foto de perfil" />
+                        {tokenInfo.firstname}
+                      </Link>
+                      <tool-tip role="tooltip">
+                        Perfil
+                      </tool-tip>
+                    </li>
+                    <li>
+                      <button className="btn btn__logout" onClick={handleLogout}>
+                        Cerrar sesión
+                      </button>
+                    </li>
+                  </ul>
+                </>
+              ) :
+                (
+                  <>
+                    <ul>
+                      <li>
+                        <Link to="/catalogo">Catalogo</Link>
+                      </li>
+                      <li>
+                        <Link to="/customCupCakes">Crea tu pastel</Link>
+                      </li>
+                      <li>
+                        <Link to="/shoppingCar">Carrito</Link>
+                      </li>
+                      <Link to="/login">
+                        <button className="btn btn__login">Inicia sesión</button>
+                      </Link>
+                      <Link to="/register">
+                        <button className="btn">Inscríbete</button>
+                      </Link>
+                    </ul>
+                  </>
+                )
+              }
             </nav>
             <div className="header__content__toggle">
               {!menuOpen ? (
