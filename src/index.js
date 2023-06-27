@@ -96,7 +96,7 @@ const authService = new AuthService();
 app.get('/api/v1/auth/login/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 app.get(
-  '/api/v1/auth/login/google/callback',
+  'localhost:5137/',
   passport.authenticate('google', { failureRedirect: '/' }),
   async (req, res, next) => {
     try{
