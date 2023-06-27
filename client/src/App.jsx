@@ -9,6 +9,7 @@ import CupCakes from "./pages/CupCakes";
 import CustomCupCakes from "./pages/CustomCupCakes";
 import Profile from "./pages/Profile";
 import NavBar from "./components/NavBar";
+import Buy from "./pages/Buy";
 
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -23,7 +24,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/about" element={<h1>about</h1>} />
           <Route path="/catalogo" element={<CupCakes />} />
-          <Route path="/buy" element={<h1>caracteristicas</h1>} />
+          <Route path="/buy" element={<Buy/>} />
           <Route path="/customCupCakes" element={<CustomCupCakes />} />
           <Route path="/shoppingCar" element={<h1>carrito de compras</h1>} />
 

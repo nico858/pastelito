@@ -1,0 +1,138 @@
+.card-container {
+    display: flex;
+    background-color: #ffffff;
+    padding: 20px;
+    margin: 5% 3% 5% 3%;
+    border-radius: 15px;
+  }
+
+  .card-container:hover {
+    box-shadow: 15px 20px 20px 10px rgba(33,33,33, 0.276) !important;
+    transition: all 0.7s linear;
+  }
+
+  .card-image {
+    width: 50%;
+  }
+
+  .card-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    object-fit: cover;
+  }
+
+  .card-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    padding: 0 20px;
+    text-align: justify;
+  }
+
+  .card-details h2 {
+    font-size: 40px;
+    margin-bottom: 10px;
+  }
+
+  .card-details p {
+    margin-bottom: 10px;
+    font-size: large;
+  }
+
+  .card-details button {
+    background-color: #2a9c9d;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 50%;
+    border-radius: 12px;
+  }
+
+  .card-details button:hover{
+    background-color: #f36273;
+    color: white;
+  }
+
+  @media (max-width: 1000px) {
+    .card-container {
+        display: flex;
+        background-color: #ffffff;
+        padding: 20px;
+    }
+
+    .card-image {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .card-details {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 861px) {
+    .card-container {
+      flex-direction: column;
+    }
+
+    .card-image {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .card-details {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .card-container {
+      flex-direction: column;
+    }
+
+    .card-image {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .card-details {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .card-container {
+      flex-direction: column;
+    }
+
+    .card-image {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .card-details {
+      width: 100%;
+    }
+    .card-details h2 {
+      font-size: 2rem;
+    }
+    .card-details p {
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 386px){
+    .card-details h2 {
+      font-size: 20px;
+      font-weight: bold;
+      color: #2a9c9d;
+    }
+    .card-details p {
+      font-size: 14px;
+    }
+  }

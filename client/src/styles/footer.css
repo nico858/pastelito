@@ -11,7 +11,7 @@
 }
 
 .footer-section {
-  width: calc(33.33% - 10px); /* El 10px es para tener un espacio entre los elementos */
+  width: calc(100% / 3 - 10px);
   margin-bottom: 20px;
 }
 
@@ -23,15 +23,50 @@
   margin: 5px 0;
 }
 
+.footer-contact-item{
+  list-style: none;
+  margin-left: -1.7rem;
+}
+
 .footer-social-icons a {
+  display: inline-block;
   color: #fff;
   margin-right: 10px;
   font-size: 18px;
 }
 
+.footer-social-icon{
+  list-style: none;
+  margin-left: -2.5rem;
+}
+
 .footer-bottom {
   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 600px) {
+  .footer-section {
+    width: 100%;
+  }
+
+  .footer-content {
+    display: flex;
     justify-content: center;
     align-items: center;
+  }
+}
 
+.icons{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px;
+  height: 25px;
+}
+
+.icons:hover{
+  color:  #2a9c9d;
+  transition: all 0.3s linear;
 }

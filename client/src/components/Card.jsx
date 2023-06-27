@@ -1,9 +1,18 @@
-import { Link } from "react-router-dom";
-import "../styles/card.css";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import '../styles/card.css';
 
-export default function Card({ title, description, image, price }) {
+const Card = ({ title, description, image, price }) => {
+  const cardData = {
+    title,
+    description,
+    image,
+    price,
+  };
+  const cardDataString = encodeURIComponent(JSON.stringify(cardData));
+
   return (
-    <Link to="/buy" className="link-card">
+    <Link to={`/buy?cardData=${cardDataString}`} className="link-card">
       <div className="card animate__animated animate__fadeInUp">
         <div className="overflow">
           <img src={image} alt="..." className="card-img-top" />
@@ -16,4 +25,6 @@ export default function Card({ title, description, image, price }) {
       </div>
     </Link>
   );
-}
+};
+
+export default Card;
