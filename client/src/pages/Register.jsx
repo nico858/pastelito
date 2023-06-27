@@ -29,15 +29,9 @@ export default function Register() {
   };
 
   return (
-    <div className="container">
-      <div className="login-box">
+      <div className="containerEver">
+        <div className="register-box">
         <h2>Regístrate</h2>
-        <p>
-          ¿Ya tienes una cuenta? &nbsp;
-          <Link className="fontStyle" to="/login">
-            Inicia Sesión
-          </Link>
-        </p>
         {
           registerErrors.length === 50 && (
             <p style={{ color: 'white', fontSize: '15px', background: '#f36273', borderRadius: '7px' }}>
@@ -142,7 +136,15 @@ export default function Register() {
             Inicia sesión con Google
           </button>
         </div>
+        <div className="login-back">
+          <p>
+            ¿Ya tienes una cuenta? &nbsp;
+            <Link className="fontStyle" to="/login">
+              Inicia Sesión
+            </Link>
+          </p>
+        </div>
       </div>
-    </div>
+      </div>
   );
 }

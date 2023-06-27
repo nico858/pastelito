@@ -2,7 +2,7 @@
     font-family: Lato, sans-serif;
     margin: 0;
     padding: 0;
-    height: 100vh;
+    height: 100% ;
     width: 100%;
   }
 
@@ -10,6 +10,26 @@
     overflow-y: hidden !important;
   }
 
+  .poster {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.3rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+  
+  @media (max-width: 980px) {
+    .poster {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .poster img {
+      max-width: 100%;
+    }
+  }
+  
   tool-tip{
     position: absolute;
     z-index: 1;

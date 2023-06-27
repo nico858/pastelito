@@ -35,7 +35,7 @@ export default function Register() {
   }, [isAuthenticated]);
 
   return (
-    <div>
+    <div className="containerEver">
       <div className="login-box">
         <h2>Inicia sesión en Benzema Cakes</h2>
         {

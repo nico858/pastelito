@@ -1,9 +1,13 @@
-h1 {
-  color: #fff;
+.containerEver {
+  font-family: Lato, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100% ;
+  width: 100%;
 }
 
-.container {
-  overflow-x: hidden;
+h1 {
+  color: #fff;
 }
 
 .fontStyle {
@@ -128,6 +132,7 @@ button:hover {
   height: 24px;
   margin-right: 8px;
 }
+
 .googleButton:hover {
   background-color: #fff;
   color: #2a9c9d;
@@ -137,7 +142,8 @@ button:hover {
   margin-top: 7%;
   background-color: #fff;
   height: 50px;
-  border-radius: 10px; /* Ajusta el valor según el grado de redondeo deseado */
+  border-radius: 10px;
+  /* Ajusta el valor según el grado de redondeo deseado */
 }
 
 
@@ -147,4 +153,75 @@ button:hover {
   align-items: center;
   padding-top: 4.3%;
   font-weight: bold;
+}
+
+.login-back {
+  margin-top: 2rem;
+  margin-bottom: -2rem;
+}
+
+.register-box {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  width: 400px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: #f0f0f0;
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+}
+
+.register-box h2 {
+  margin: 0 0 2rem;
+  padding: 0;
+  color: #f36273;
+  text-align: center;
+  cursor: pointer;
+}
+
+.register-box p {
+  margin: -1rem 0 2rem;
+  padding: 0;
+  color: #2a9c9d;
+  text-align: center;
+  font-size: medium;
+  font-weight: bold;
+}
+
+.register-box .user-box {
+  position: relative;
+}
+
+.register-box .user-box input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #000000;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #2a9c9d;
+  outline: none;
+  background: transparent;
+}
+
+.register-box .user-box .password-input-container {
+  display: flex;
+  align-items: center;
+}
+
+.register-box .user-box .password-input-container input {
+  flex: 1;
+}
+
+@media screen and (max-width: 480px) {
+  .register-box {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .register-box .user-box {
+    margin-bottom: 20px;
+  }
 }

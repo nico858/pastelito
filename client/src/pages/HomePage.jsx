@@ -4,9 +4,12 @@ import { productsRequest } from "../api/auth";
 
 import Card from "../components/Card";
 import { useEffect, useState } from "react";
+import Footer from "../components/Footer";
 
 export default function HomePage() {
   const [product, setProduct] = useState(null);
+
+  const InitialImage = "https://res.cloudinary.com/dmvpidbrt/image/upload/v1687841798/Pastelitos/party_1_nfde0c.png";
 
   useEffect(() => {
     getProduct();
@@ -28,18 +31,21 @@ export default function HomePage() {
         <style>{`body { background-color: #2a9c9d; }`}</style>
       </Helmet>
       <div className="containerHome">
-        <h1>HomePage</h1>
+        <div className="poster animate__animated animate__fadeInUp">
+          <img src={InitialImage} alt="poster" />
+        </div>
         <div className="container">
           <div className="row">
             {product &&
               product.slice(0, 6).map((item) => (
                 <div className="col-md-4" key={item.productId}>
-                  <Card title={item.name} description={item.description} image={item.urlImage} />
+                  <Card title={item.name} description={item.description} image={item.urlImage} price={item.price} />
                 </div>
               ))}
           </div>
         </div>
       </div>
+      <Footer />
     </HelmetProvider>
   );
 }

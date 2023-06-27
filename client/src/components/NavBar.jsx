@@ -11,7 +11,9 @@ function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { isAuthenticated, user } = useAuth();
   const [tokenInfo, setTokenInfo] = useState(null);
+
   const fotoPerfil = "https://cdn-icons-png.flaticon.com/512/1033/1033396.png?w=740&t=st=1687752473~exp=1687753073~hmac=0d64ea1112ad1d96de34ad8917b2badb887ec29e2785c6d6152d2d4141ad4db4"
+  const shoppingCar = "https://cdn-icons-png.flaticon.com/128/10994/10994358.png"
 
   useEffect(() => {
     const token = document.cookie.replace(
@@ -89,7 +91,7 @@ function Navbar() {
                       <Link to="/customCupCakes">Crea tu pastel</Link>
                     </li>
                     <li>
-                      <Link to="/shoppingCar">Carrito</Link>
+                      <Link to="/shoppingCar"><img src={shoppingCar} className="shoppingCar"/> </Link>
                     </li>
                     <li>
                       <Link to="/profile" data-tip="Perfil" data-for="profileTooltip">
@@ -118,7 +120,7 @@ function Navbar() {
                         <Link to="/customCupCakes">Crea tu pastel</Link>
                       </li>
                       <li>
-                        <Link to="/shoppingCar">Carrito</Link>
+                        <Link to="/shoppingCar">Carrito<img src={shoppingCar} className="shoppingCar" alt="Carrito de compras"/> </Link>
                       </li>
                       <Link to="/login">
                         <button className="btn btn__login">Inicia sesión</button>
