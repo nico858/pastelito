@@ -38,9 +38,9 @@ export default class OrderDetailService {
 
       return newOrderDetail;
     }))
-
+    console.log(user.addressId);
     const totalPrice = newOrderDetails.reduce((total, orderDetail) => total + orderDetail.price, 0);
-    await newOrderDate.update({ totalPrice: totalPrice });
+    await newOrderDate.update({ totalPrice: totalPrice, addressId: user.addressId });
     return { newOrderDetails, totalPrice };
   }
 

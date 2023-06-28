@@ -161,7 +161,7 @@ router.get('/:addressId',
 );
 
 router.post('/',
-  passport.authenticate('jwt', { session: false }),
+  // passport.authenticate('jwt', { session: false }),
   validatorHandler(createAddressSchema, 'body'),
   async (req, res, next) => {
     try {

@@ -99,7 +99,9 @@ app.get(
   'localhost:5173/',
   passport.authenticate('google', { failureRedirect: '/' }),
   async (req, res, next) => {
+    console.log("[1]")
     try{
+        console.log("[2]")
         const googleUser = req.user;
         const userInfo = {
             firstName: googleUser.given_name,
@@ -109,9 +111,11 @@ app.get(
             phone: googleUser.id,
             role: 'customer',
         }
+        console.log("[3]")
         const registeredUser = await userService.findByEmail(userInfo.email);
         if (!registeredUser) {
             const newUser = await userService.create(userInfo);
+            console.log(authService.signToken(newUser))
             res.status(201).json(authService.signToken(newUser));
         } else {
             res.status(201).json(authService.signToken(registeredUser));
