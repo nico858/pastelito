@@ -10,6 +10,7 @@ import CustomCupCakes from "./pages/CustomCupCakes";
 import Profile from "./pages/Profile";
 import NavBar from "./components/NavBar";
 import Buy from "./pages/Buy";
+import ShoppingCar from "./pages/ShoppingCar";
 
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -26,11 +27,11 @@ function App() {
           <Route path="/catalogo" element={<CupCakes />} />
           <Route path="/buy" element={<Buy/>} />
           <Route path="/customCupCakes" element={<CustomCupCakes />} />
-          <Route path="/shoppingCar" element={<h1>carrito de compras</h1>} />
 
           <Route element={<ProtectedRoute />}>
             <Route path="/generateOrder" element={<Order />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/shoppingCar" element={<ShoppingCar/>} />
           </Route>
         </Routes>
       </BrowserRouter>
