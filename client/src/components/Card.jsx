@@ -2,8 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/card.css';
 
-const Card = ({ title, description, image, price }) => {
+const Card = ({ productId, title, description, image, price }) => {
   const cardData = {
+    productId,
     title,
     description,
     image,
@@ -26,5 +27,6 @@ const Card = ({ title, description, image, price }) => {
     </Link>
   );
 };
+
 
 export default Card;

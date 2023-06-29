@@ -19,7 +19,7 @@ const HomePage = () => {
   const getProduct = async () => {
     try {
       const res = await productsRequest();
-      console.log(res.data);
+      //console.log(res.data);
       setProduct(res.data);
     } catch (err) {
       console.log(err);
@@ -47,6 +47,7 @@ const HomePage = () => {
               product.slice(0, 6).map((item) => (
                 <div className="col-md-4" key={item.productId}>
                   <Card
+                    productId={item.productId}
                     title={item.name}
                     description={item.description}
                     image={item.urlImage}
