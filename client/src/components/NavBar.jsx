@@ -91,7 +91,7 @@ function Navbar() {
                       <Link to="/customCupCakes">Crea tu pastel</Link>
                     </li>
                     <li>
-                      <Link to="/shoppingCar"><img src={shoppingCar} className="shoppingCar"/> </Link>
+                      <Link to="/shoppingCar">Carrito<img src={shoppingCar} className="shoppingCar"/></Link>
                     </li>
                     <li>
                       <Link to="/profile" data-tip="Perfil" data-for="profileTooltip">

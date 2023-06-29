@@ -1,6 +1,8 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import { registerRequest, loginRequest } from "../api/auth";
+import {orderRequest} from "../api/product";
 import Cookies from "js-cookie";
+
 
 export const AuthContext = createContext();
 
@@ -17,6 +19,7 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [errors, setErrors] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [response, setResponse] = useState(null);
 
   const signUp = async (user) => {
     try {
@@ -46,6 +49,17 @@ export const AuthProvider = ({ children }) => {
       );
     }
   };
+
+  const generateOrder = async (body) => {
+    try {
+      const res = await orderRequest(body);
+      console.log(res);
+      return res; // Devuelve la respuesta
+    } catch (err) {
+      console.log(err.response.data);
+      throw err; // Lanza el error para manejarlo en el componente
+    }
+  }
 
   const localStorageValue = localStorage.getItem("userData");
   document.cookie = `userData=${localStorageValue}; path=/`.replace(/\"/g, "");
@@ -99,6 +113,7 @@ export const AuthProvider = ({ children }) => {
         user,
         isAuthenticated,
         errors,
+        generateOrder,
       }}
     >
       {children}
