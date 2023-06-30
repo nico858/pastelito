@@ -29,7 +29,8 @@ export default class AuthService {
       sub: user.id,
       role: user.role,
       firstname: user.firstName,
-      lastName: user.lastName
+      lastName: user.lastName,
+      email: user.email,
     };
     const token = jwt.sign(payload, config.jwtSecret);
     return {
