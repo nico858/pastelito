@@ -1,0 +1,27 @@
+.center-card{
+    display: flex;
+    justify-content: center;
+}
+
+.card-details h5{
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2a9c9d;
+}
+
+.card-image{
+    width: 30%;
+    height: auto;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.card-details {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 20px;
+  }
+
+

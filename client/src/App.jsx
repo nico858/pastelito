@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 
 import Register from "./pages/Register";
-import Order from "./pages/Order";
 import Login from "./pages/Login";
 import HomePage from "./pages/HomePage";
 import CupCakes from "./pages/CupCakes";
@@ -29,7 +28,6 @@ function App() {
           <Route path="/customCupCakes" element={<CustomCupCakes />} />
 
           <Route element={<ProtectedRoute />}>
-            <Route path="/generateOrder" element={<Order />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/shoppingCar" element={<ShoppingCar/>} />
           </Route>

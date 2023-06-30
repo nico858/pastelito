@@ -2,12 +2,14 @@
   background-color: rgb(32, 32, 32);
   color: #fff;
   padding: 20px;
+  margin-top: auto;
 }
 
 .footer-content {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin-left: 3rem;
 }
 
 .footer-section {

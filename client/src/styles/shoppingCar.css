@@ -7,6 +7,14 @@
   color: #f0f0f0;
 }
 
+.container-shopping {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+
 .logo-cart{
   width: 3rem;
   height: auto;

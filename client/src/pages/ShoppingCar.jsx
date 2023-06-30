@@ -4,7 +4,7 @@ import { useAuth } from "../context/AuthContext";
 import jwtDecode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
-//import Footer from '../components/Footer';
+import Footer from '../components/Footer';
 
 
 export default function ShoppingCar() {
@@ -109,7 +109,7 @@ export default function ShoppingCar() {
   }
 
   return (
-    <div>
+    <div className="container-shopping">
       <div className="title">
         <h1>Carrito de compras</h1>
         <img
@@ -160,6 +160,7 @@ export default function ShoppingCar() {
           </div>
         </div>
       ) }
+      <Footer />
     </div>
   );
 }
