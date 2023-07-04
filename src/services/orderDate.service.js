@@ -38,6 +38,13 @@ export default class OrderDateService {
     return orderDate;
   }
 
+  async findByUser(userId) {
+    const response = await OrderDate.findAll({
+      where: { userId: userId }
+    });
+    return response;
+  }
+
   async update(id, changes) {
     const orderDate = await this.findOne(id);
     const response = await orderDate.update(changes);

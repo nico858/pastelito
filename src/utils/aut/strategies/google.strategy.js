@@ -6,7 +6,7 @@ import { config } from '../../../config/config.js';
 const options = {
     clientID: config.googleClientId,
     clientSecret: config.googleClientSecret,
-    callbackURL: "http://localhost:5173/",
+    callbackURL: "http://localhost:3000/callback",
     passReqToCallback   : true
 }
 

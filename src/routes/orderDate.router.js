@@ -19,11 +19,24 @@ router.get('/', async (req, res, next) => {
 });
 
 router.get('/:orderDateId',
-  validatorHandler(getOrderDateSchema, 'params'),
+  // validatorHandler(getOrderDateSchema, 'params'),
   async (req, res, next) => {
     try {
       const { orderDateId } = req.params;
       const orderDate = await service.findOne(orderDateId);
+      res.json(orderDate);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+router.get('/user/:userId',
+  // validatorHandler(getOrderDateSchema, 'params'),
+  async (req, res, next) => {
+    try {
+      const { userId } = req.params;
+      const orderDate = await service.findByUser(userId);
       res.json(orderDate);
     } catch (error) {
       next(error);
