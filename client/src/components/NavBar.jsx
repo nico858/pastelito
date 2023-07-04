@@ -88,9 +88,6 @@ function Navbar() {
                       <Link to="/catalogo">Catalogo</Link>
                     </li>
                     <li>
-                      <Link to="/customCupCakes">Crea tu pastel</Link>
-                    </li>
-                    <li>
                       <Link to="/shoppingCar">Carrito<img src={shoppingCar} className="shoppingCar"/></Link>
                     </li>
                     <li>
@@ -115,9 +112,6 @@ function Navbar() {
                     <ul>
                       <li>
                         <Link to="/catalogo">Catalogo</Link>
-                      </li>
-                      <li>
-                        <Link to="/customCupCakes">Crea tu pastel</Link>
                       </li>
                       <li>
                         <Link to="/shoppingCar">Carrito<img src={shoppingCar} className="shoppingCar" alt="Carrito de compras"/> </Link>

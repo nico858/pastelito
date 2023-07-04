@@ -10,6 +10,16 @@
     overflow-y: hidden !important;
   }
 
+  .container img{
+    overflow-y: hidden !important;
+    height: 200px !important;
+  }
+
+  .container img:hover{
+    transform: scale(1.2);
+    transition: all 0.7s ease-in-out;
+  }
+
   .poster {
     display: flex;
     justify-content: center;

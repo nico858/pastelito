@@ -44,7 +44,7 @@ const HomePage = () => {
         <div className="container">
           <div className="row">
             {product &&
-              product.slice(0, 6).map((item) => (
+              product.slice(0, 9).map((item) => (
                 <div className="col-md-4" key={item.productId}>
                   <Card
                     productId={item.productId}

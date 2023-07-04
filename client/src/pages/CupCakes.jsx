@@ -37,26 +37,27 @@ export default function CupCakes() {
   return (
     <div className="container">
       {cardsLoaded ? (
-        <div>
+        <>
           {categories.map((category) => (
             <div key={category}>
-              <h2>{category}</h2>
-              <div className="card-container">
+              <h2 className="category-heading">{category}</h2>
+              <div className="card-grid">
                 {products
                   .filter((product) => product.category === category)
                   .map((product) => (
-                    <Card
-                      key={product.productId}
-                      image={product.urlImage}
-                      name={product.name}
-                      description={product.description}
-                      price={product.price}
-                    />
+                    <div key={product.productId} className="card-item">
+                      <Card
+                        image={product.urlImage}
+                        name={product.name}
+                        description={product.description}
+                        price={product.price}
+                      />
+                    </div>
                   ))}
               </div>
             </div>
           ))}
-        </div>
+        </>
       ) : (
         <p>Loading...</p>
       )}
