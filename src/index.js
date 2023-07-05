@@ -82,9 +82,9 @@ app.use(
     swagger.setup(spacs)
 )
 
-app.get('/', /*checkApiKey,*/ (req, res) => {
-    res.send('Hello World!');
-});
+// app.get('/', /*checkApiKey,*/ (req, res) => {
+//     res.send('Hello World!');
+// });
 
 import UserService from './services/user.service.js';
 import AuthService from './services/auth.service.js';
