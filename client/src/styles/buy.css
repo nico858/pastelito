@@ -35,11 +35,14 @@
   .card-details h2 {
     font-size: 40px;
     margin-bottom: 10px;
+    color: #2a9c9d;
+    font-family: 'Monserrat';
   }
 
   .card-details p {
     margin-bottom: 10px;
     font-size: large;
+    font-family: 'Lato', sans-serif;
   }
 
   .card-details button {
@@ -48,9 +51,10 @@
     border: none;
     padding: 10px 20px;
     font-size: 16px;
-    cursor: pointer;
     width: 50%;
     border-radius: 12px;
+    font-family: 'Lato', sans-serif;
+
   }
 
   .card-details button:hover{
@@ -174,4 +178,5 @@
   .quantity-container span {
     margin: 0 10px;
     font-size: 20px;
+    font-family: 'Lato', sans-serif;
   }

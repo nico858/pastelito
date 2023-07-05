@@ -5,6 +5,10 @@
   margin-top: auto;
 }
 
+.footer h2{
+  font-family: 'Monserrat'
+}
+
 .footer-content {
   display: flex;
   flex-wrap: wrap;
@@ -19,6 +23,7 @@
 
 .footer-title {
   font-size: 30px;
+  font-family: 'Monserrat';
 }
 
 .footer-contact {
@@ -28,6 +33,8 @@
 .footer-contact-item{
   list-style: none;
   margin-left: -1.7rem;
+  font-family: 'Lato', sans-serif;
+
 }
 
 .footer-social-icons a {
@@ -46,6 +53,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: 'Lato', sans-serif;
 }
 
 @media (max-width: 600px) {

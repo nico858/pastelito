@@ -1,6 +1,5 @@
 @mixin breakpoint($point) {
   @if $point ==md {
-
     // 768px
     @media (min-width: 48em) {
       @content;
@@ -17,7 +16,7 @@
   border-radius: 12px;
 }
 
-.fotoPerfil{
+.fotoPerfil {
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -54,6 +53,7 @@
       text-decoration: none;
       color: #fff;
       margin-left: 2rem;
+      font-family: 'Montserrat';
     }
 
     &__nav {
@@ -116,6 +116,7 @@
             color: inherit;
             border-radius: 12px;
             transition: 0.3s ease all;
+            font-family: "Lato", "Monserrat", "sans-serif";
 
             &:hover {
               background: rgba(#fff, 0.1);
@@ -134,7 +135,7 @@
         outline: none;
         border-radius: 12px;
         font-size: 1rem;
-        font-family: inherit;
+        font-family: "Lato", "Monserrat", "sans-serif";
         background: rgb(162, 162, 246);
         color: rgb(32, 32, 32);
         border: 1px solid transparent;
@@ -150,8 +151,10 @@
 
         &:active {
           border-color: rgb(162, 162, 246);
-          background: linear-gradient(rgba(rgb(162, 162, 246), 0.2),
-              rgba(rgb(162, 162, 246), 0.3));
+          background: linear-gradient(
+            rgba(rgb(162, 162, 246), 0.2),
+            rgba(rgb(162, 162, 246), 0.3)
+          );
           color: rgb(162, 162, 246);
         }
 
@@ -159,7 +162,7 @@
           background-color: rgb(32, 32, 32);
           color: #fff;
           border: none;
-        
+
           &:hover {
             background-color: rgba(rgb(32, 32, 32), 0.1);
             color: #fff;
@@ -170,12 +173,12 @@
           }
         }
 
-        &__logout{
+        &__logout {
           background-color: rgb(32, 32, 32);
           color: #fff;
           border: none;
           margin-top: 1rem;
-        
+
           &:hover {
             background-color: rgba(rgb(32, 32, 32), 0.1);
             color: #fff;
@@ -184,7 +187,6 @@
             /* Para compatibilidad con navegadores basados en WebKit */
             color: rgb(162, 162, 246);
           }
-
         }
       }
 

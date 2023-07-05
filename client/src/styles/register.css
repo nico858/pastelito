@@ -14,6 +14,11 @@ h1 {
   color: #f36273;
   font-size: medium;
   font-weight: bold;
+  font-family: 'Lato', sans-serif;
+}
+
+label {
+  font-family: 'Lato', sans-serif;
 }
 
 .login-box {
@@ -35,6 +40,8 @@ h1 {
   color: #f36273;
   text-align: center;
   cursor: pointer;
+  font-family: 'Monserrat';
+  font-weight: bold;
 }
 
 .login-box p {
@@ -96,7 +103,7 @@ button {
   padding: 12px 25px;
   font-size: 15px;
   font-weight: bold;
-  font-family: "Lato", sans-serif;
+  font-family: 'Lato', sans-serif;
   border-radius: 12px;
   width: 100%;
 }
@@ -111,6 +118,7 @@ button:hover {
   font-size: medium;
   font-weight: bold;
   text-decoration: none;
+  font-family: 'Lato', sans-serif;
 }
 
 .centerButton {
@@ -125,6 +133,7 @@ button:hover {
   margin-top: 2%;
   background-color: #fff;
   color: black;
+  font-family: 'Lato', sans-serif;
 }
 
 .googleButton img {
@@ -143,7 +152,7 @@ button:hover {
   background-color: #fff;
   height: 50px;
   border-radius: 10px;
-  /* Ajusta el valor según el grado de redondeo deseado */
+  font-family: 'Lato', sans-serif;
 }
 
 
@@ -153,6 +162,7 @@ button:hover {
   align-items: center;
   padding-top: 4.3%;
   font-weight: bold;
+  font-family: 'Lato', sans-serif;
 }
 
 .login-back {
@@ -162,7 +172,7 @@ button:hover {
 
 .register-box {
   position: absolute;
-  top: 70%;
+  top: 50%;
   left: 50%;
   width: 400px;
   padding: 40px;
@@ -179,6 +189,8 @@ button:hover {
   color: #f36273;
   text-align: center;
   cursor: pointer;
+  font-weight: bold;
+  font-family: 'Lato', sans-serif;
 }
 
 .register-box p {
@@ -188,6 +200,7 @@ button:hover {
   text-align: center;
   font-size: medium;
   font-weight: bold;
+  font-family: 'Lato', sans-serif;
 }
 
 .register-box .user-box {
@@ -204,6 +217,7 @@ button:hover {
   border-bottom: 1px solid #2a9c9d;
   outline: none;
   background: transparent;
+  font-family: 'Lato', sans-serif;
 }
 
 .register-box .user-box .password-input-container {

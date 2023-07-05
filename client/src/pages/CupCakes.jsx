@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { productsRequest } from "../api/auth";
-import Card from '../components/Card';
+import Card from "../components/Card";
 import "../styles/cupCakes.css";
+import Footer from "../components/Footer";
 
 export default function CupCakes() {
   const [products, setProducts] = useState([]);
@@ -35,32 +36,55 @@ export default function CupCakes() {
   }, []);
 
   return (
-    <div className="container">
+    <div className="containercat">
       {cardsLoaded ? (
         <>
-          {categories.map((category) => (
-            <div key={category}>
-              <h2 className="category-heading">{category}</h2>
-              <div className="card-grid">
-                {products
-                  .filter((product) => product.category === category)
-                  .map((product) => (
-                    <div key={product.productId} className="card-item">
-                      <Card
-                        image={product.urlImage}
-                        name={product.name}
-                        description={product.description}
-                        price={product.price}
-                      />
-                    </div>
-                  ))}
+          {categories.map((category) => {
+            let message = '';
+
+            switch (category) {
+              case 'Torta':
+                message = '¡Celebra momentos especiales con nuestras irresistibles tortas!';
+                break;
+              case 'Personal':
+                message = 'Saborea la felicidad en pequeñas porciones con nuestros deliciosos pastelitos individuales.';
+                break;
+              case 'Ponque':
+                message = 'Disfruta de la magia en cada porción de nuestros ponqués.';
+                break;
+              default:
+                message = category;
+                break;
+            }
+
+            return (
+              <div key={category} className="container">
+                <h2 className="category-heading">
+                  {message}
+                </h2>
+                <div className="row">
+                  {products
+                    .filter((product) => product.category === category)
+                    .map((product) => (
+                      <div key={product.productId} className="col-md-4">
+                        <Card
+                          title={product.name}
+                          image={product.urlImage}
+                          name={product.name}
+                          description={product.description}
+                          price={product.price}
+                        />
+                      </div>
+                    ))}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </>
       ) : (
         <p>Loading...</p>
       )}
+      <Footer />
     </div>
   );
 }

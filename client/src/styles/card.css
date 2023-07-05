@@ -12,13 +12,12 @@
 }
 
 .card-title{
-    font-family: Lato, sans-serif !important;
+    font-family: 'Lato', sans-serif !important;
     color: #2a9c9d !important;
 }
 
 .card-text{
-    font-size: 1rem;
-    font-family: Lato, sans-serif;
+    font-family: 'Lato', sans-serif;
 }
 
 .overflow{
