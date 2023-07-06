@@ -5,6 +5,7 @@ import { productsRequest } from '../api/auth';
 import Card from '../components/Card';
 import Footer from '../components/Footer';
 import '../styles/homePage.css';
+import { Link } from 'react-router-dom';
 
 const HomePage = () => {
   const [product, setProduct] = useState(null);
@@ -39,7 +40,9 @@ const HomePage = () => {
       </Helmet>
       <div className="containerHome">
         <div className="poster animate__animated animate__fadeInUp">
+          <Link to="/catalogo">
           <img src={InitialImage} alt="poster" />
+          </Link>
         </div>
         <div className="container">
           <div className="row">
