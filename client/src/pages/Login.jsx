@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-import { Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useEffect } from "react";
 
@@ -23,12 +23,12 @@ export default function Register() {
     setShowPassword(!showPassword);
   };
 
-  const handleButton = () => {
-    window.location.href = "http://localhost:3000/api/v1/auth/login/google";
+  const handleButton = async() => {
+    window.open("http://localhost:3000/api/v1/auth/login/google", "_blank");
   };
 
   useEffect(() => {
-    if(isAuthenticated) {
+    if (isAuthenticated) {
       console.log("isAuthenticated", isAuthenticated);
       navigate("/");
     }
