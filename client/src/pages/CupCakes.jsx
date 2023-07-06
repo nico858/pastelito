@@ -68,6 +68,7 @@ export default function CupCakes() {
                     .map((product) => (
                       <div key={product.productId} className="col-md-4">
                         <Card
+                          productId={product.productId}
                           title={product.name}
                           image={product.urlImage}
                           name={product.name}
